@@ -77,6 +77,10 @@
 .search-wrapper a:hover {
   color: #dddddd;
 }
+.search-wrapper button {
+  background: none;
+  border: none;
+}
 @media (max-width: 600px) {
   .search-wrapper h1 {
     font-size: 50px;

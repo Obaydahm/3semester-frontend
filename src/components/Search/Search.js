@@ -37,21 +37,25 @@ function Search({ searches, setSearches }) {
             value={search}
             placeholder="Search for a city ..."
           ></input>
-          <submit>
+          <button onClick={handleSubmit}>
             <img className="search-magnifier" src={magnifier} />
-          </submit>
+          </button>
         </div>
       </form>
       <h4>Latest searches</h4>
       <ul>
-        {localStorage
-          .getItem("searches")
-          .split(",")
-          .map((search, index) => (
-            <li key={index}>
-              <Link to={search}>{search}</Link>
-            </li>
-          ))}
+        {localStorage.getItem("searches") !== "" ? (
+          localStorage
+            .getItem("searches")
+            .split(",")
+            .map((search, index) => (
+              <li key={index}>
+                <Link to={search}>{search}</Link>
+              </li>
+            ))
+        ) : (
+          <p>Nothing to see here &#128521;</p>
+        )}
       </ul>
     </div>
   );
