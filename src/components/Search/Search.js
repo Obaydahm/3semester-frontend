@@ -14,7 +14,7 @@ function Search({ searches, setSearches }) {
     if (localStorage.getItem("searches") !== "") {
       searches = localStorage.getItem("searches").split(",");
     }
-    searches = searches.filter(s => s !== search);
+    searches = searches.filter(s => s.toLowerCase() !== search.toLowerCase());
 
     searches.unshift(
       search.charAt(0).toUpperCase() + search.substring(1).toLowerCase()
