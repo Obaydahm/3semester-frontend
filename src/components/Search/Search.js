@@ -4,6 +4,7 @@ import magnifier from "./icons/magnifying-glass.svg";
 import exit from "./icons/exit.svg";
 import "./Search.css";
 function Search({ searches, setSearches }) {
+  /*localStorage.setItem("searches", "");*/
   const [search, setSearch] = useState();
   function handleChange(event) {
     setSearch(event.target.value);
@@ -13,9 +14,12 @@ function Search({ searches, setSearches }) {
     if (localStorage.getItem("searches") !== "") {
       searches = localStorage.getItem("searches").split(",");
     }
+    searches = searches.filter(s => s !== search);
+
     searches.unshift(
       search.charAt(0).toUpperCase() + search.substring(1).toLowerCase()
     );
+
     if (searches.length > 5) {
       searches.pop();
     }
