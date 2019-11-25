@@ -10,7 +10,9 @@ function Search({ searches, setSearches }) {
   }
   function handleSubmit(event) {
     event.preventDefault();
-    searches = localStorage.getItem("searches").split(",");
+    if (localStorage.getItem("searches") !== "") {
+      searches = localStorage.getItem("searches").split(",");
+    }
     searches.unshift(
       search.charAt(0).toUpperCase() + search.substring(1).toLowerCase()
     );
