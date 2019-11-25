@@ -1,34 +1,101 @@
-body {
-    background: #34303B;
+.search-wrapper {
+  background: #34303b;
+  text-align: center;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+::placeholder {
+  color: white;
 }
 .search-bar {
-    background: rgba(255,255,255,0.3);
-    border: none;
-    border-radius: 50px;
-    width: 500px;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  border-radius: 50px;
+  margin: 20px;
+  width: 500px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+.search-wrapper h1 {
+  font-weight: 200;
+  color: white;
+  font-size: 80px;
+  margin: 0;
+}
+.search-wrapper input {
+  width: 100%;
+  padding-left: 50px;
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 25px;
+  height: 100%;
+  color: white;
+  font-weight: 200;
+  margin: auto;
+}
+.search-wrapper h4 {
+  text-align: center;
+  color: white;
+  font-size: 25px;
+  font-weight: 400;
+  margin: 0;
+}
+.search-wrapper ul {
+  list-style-type: none;
+  color: white;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  font-weight: 100;
+}
+.search-wrapper li {
+  margin: 10px;
+}
+.search-form {
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+}
+.search-exit {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.search-magnifier,
+.search-exit {
+  filter: invert(1);
+  width: 25px;
+  padding: 20px;
+  cursor: pointer;
+}
+.search-wrapper a:hover {
+  color: #dddddd;
+}
+@media (max-width: 600px) {
+  .search-wrapper h1 {
+    font-size: 50px;
+  }
+  .search-bar {
+    width: 300px;
     height: 50px;
-    display: flex;
-    align-items: center;
-}
-h1 {
-    font-weight: 200;
-    color: white;
-    font-size: 60px;
-}
-input {
-    width: 100%;
-    padding-left: 50px;
-    background: none;
-    border: none;
-    outline: none;
+  }
+  .search-magnifier,
+  .search-exit {
+    width: 20px;
+  }
+  .search-wrapper h4 {
     font-size: 20px;
-    height: 100%;
-    color: white;
-    font-weight: 200;
-    margin: auto;
-}
-i {
-    color: white;
-    padding: 20px;
-
+  }
+  .search-wrapper ul {
+    font-size: 15px;
+  }
+  .search-wrapper input {
+    font-size: 20px;
+  }
 }
