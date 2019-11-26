@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Route, BrowserRouter as Router } from "react-router-dom";
+import { Route, Link, BrowserRouter as Router } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/pro-solid-svg-icons';
@@ -31,6 +31,19 @@ function App() {
   );
 }
 function Home() {
-  return <div>{localStorage.getItem("searches")}</div>;
+
+  const linkStyle = {
+    fontSize: '20px',
+    color: '#999999'
+  };
+
+  return (
+    <div>
+      {localStorage.getItem("searches")}
+      <br />
+      <Link to="/search" style={linkStyle}>Search</Link><br />
+      <Link to="/cityinfo" style={linkStyle}>City Info</Link>
+    </div>
+  );
 }
 export default App;
