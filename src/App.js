@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Route, BrowserRouter as Router } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/pro-solid-svg-icons';
 import facade from './apiFacade';

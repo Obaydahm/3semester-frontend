@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito:900,800,500');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:900,800,500');
+
+@media only screen and (max-width: 767px){
+	.cityinfo-wrapper h1 {
+    font-size: 50px!important;
+  }
+
+  .cityinfo-wrapper h3 {
+    font-size: 40px!important;
+  }
+}
+.cityinfo-wrapper {
+  /*background: #36D1DC;
+  background: -webkit-linear-gradient(to bottom, #5B86E5, #36D1DC);
+  background: linear-gradient(to bottom, #5B86E5, #36D1DC);
+  */
+  height: 100vh;
+  width: 100vw;
+}
+
+  .cityinfo-wrapper .cityinfo-topbar {
+    background: url("./img/3042.jpg") center 30% no-repeat;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: 'Nunito', sans-serif;
+  }
+
+    .cityinfo-wrapper h1 {
+      font-weight: 800;
+      color: white;
+      font-size: 80px;
+      margin: 0;
+      text-shadow: 0px 1px 6px #111111;
+    }
+
+    .cityinfo-wrapper h3 {
+      font-weight: 700;
+      font-size: 50px;
+      color: white;
+      margin: 0;
+      text-shadow: 0px 1px 6px #111111;
+    }
+
+  .cityinfo-wrapper .cityinfo-content {
+    margin: 0px 20px 20px 20px;
+  }
+
+  .cityinfo-wrapper .cityinfo-content .row{
+    margin: 0px;
+  }
+
+  .cityinfo-wrapper .cityinfo-content .cityinfo-content-box{
+    padding: 30px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 4px;
+    margin-top: 20px;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .cityinfo-wrapper .cityinfo-content .cityinfo-content-box .icon {
+    font-size: 34px;
+    padding-bottom: 5px;
+    color: #f1f1f1;
+    text-shadow: 1px 1px 3px #003c7c;
+  }
+  .cityinfo-wrapper .cityinfo-content .cityinfo-content-box .header{
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 3px #003c7c;
+    padding-bottom: 30px;
+  }
+
+  .cityinfo-wrapper .cityinfo-content .cityinfo-content-box .item {
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cityinfo-wrapper .cityinfo-content .cityinfo-content-box .item span.title{
+    font-weight: 800;
+    text-shadow: 1px 1px 3px #003c7c;
+  }
+
+  .cityinfo-wrapper .cityinfo-content .cityinfo-content-box .item span.badge {
+    margin-top: 5px;
+    padding: 4px 6px;
+    background-color: #e9e9e9;
+    color: #414141;
+    border: 1px solid #fff;
+    border-radius: 3px;
+  }
+  
+
+
+
