@@ -138,7 +138,7 @@ function CityInfo({ facade }) {
 
               <div className="item">
                 <span className="title">Direction degree</span>
-                <span>138</span>
+                <span>138&#176;</span>
               </div>
 
             </div>
