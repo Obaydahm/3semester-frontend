@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { Route, BrowserRouter as Router } from "react-router-dom";
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/pro-solid-svg-icons';
 import Search from "./components/Search/Search";
 import "./App.css";
 
 function App() {
+  library.add(fas);
+
   const [searches, setSearches] = useState([]);
   const [city, setCity] = useState({});
   /*initialize city on fetch method and pass as props to Search component. Then it can be added to list of latest searches*/

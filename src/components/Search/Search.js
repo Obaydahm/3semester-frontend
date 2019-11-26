@@ -3,7 +3,25 @@ import { Link } from "react-router-dom";
 import magnifier from "./icons/magnifying-glass.svg";
 import exit from "./icons/exit.svg";
 import "./Search.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 function Search({ searches, setSearches }) {
+
+  const iconCloudStyle = {
+    fontSize: '60px',
+    color: '#f2f8ff'
+  };
+
+  const iconSunStyle = {
+    fontSize: '30px',
+    color: 'yellow',
+    marginTop: '27px',
+    marginLeft: '-5px',
+  };
+
+  const spanStyle = {
+    padding: '45px 0px'
+  };
+
   /*localStorage.setItem("searches", "");*/
   const [search, setSearch] = useState();
   function handleChange(event) {
@@ -32,6 +50,12 @@ function Search({ searches, setSearches }) {
       <Link to="/">
         <img alt="exit-icon" src={exit} className="search-exit" />
       </Link>
+
+      <span className="fa-layers fa-fw" style={spanStyle}>
+        <FontAwesomeIcon icon="circle" style={iconSunStyle} />
+        <FontAwesomeIcon icon="cloud" style={iconCloudStyle} />
+      </span>
+
       <h1>Search for a city</h1>
       <form className="search-form" onSubmit={handleSubmit}>
         <div className="search-bar">
