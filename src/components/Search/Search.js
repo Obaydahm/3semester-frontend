@@ -11,7 +11,7 @@ function Search({ searches, setSearches }) {
   }
   function handleSubmit(event) {
     event.preventDefault();
-    if (localStorage.getItem("searches") !== "") {
+    if (localStorage.getItem("searches") !== null) {
       searches = localStorage.getItem("searches").split(",");
     }
     searches = searches.filter(s => s.toLowerCase() !== search.toLowerCase());
@@ -30,7 +30,7 @@ function Search({ searches, setSearches }) {
   return (
     <div className="search-wrapper">
       <Link to="/">
-        <img src={exit} className="search-exit" />
+        <img alt="exit-icon" src={exit} className="search-exit" />
       </Link>
       <h1>Search for a city</h1>
       <form className="search-form" onSubmit={handleSubmit}>
@@ -42,24 +42,26 @@ function Search({ searches, setSearches }) {
             placeholder="Search for a city ..."
           ></input>
           <button onClick={handleSubmit}>
-            <img className="search-magnifier" src={magnifier} />
+            <img alt="search-icon" className="search-magnifier" src={magnifier} />
           </button>
         </div>
       </form>
       <h4>Latest searches</h4>
       <ul>
-        {localStorage.getItem("searches") !== "" ? (
-          localStorage
-            .getItem("searches")
-            .split(",")
-            .map((search, index) => (
-              <li key={index}>
-                <Link to={search}>{search}</Link>
-              </li>
-            ))
-        ) : (
-          <p>Nothing to see here &#128521;</p>
-        )}
+        {
+          localStorage.getItem("searches") !== null ? (
+            localStorage
+              .getItem("searches")
+              .split(",")
+              .map((search, index) => (
+                <li key={index}>
+                  <Link to={search}>{search}</Link>
+                </li>
+              ))
+          ) : (
+              <p>Nothing to see here <span role="img" aria-label="wink-smiley">&#128521;</span></p>
+            )
+        }
       </ul>
     </div>
   );
