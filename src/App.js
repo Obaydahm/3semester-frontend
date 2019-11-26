@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { Route, BrowserRouter as Router } from "react-router-dom";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/pro-solid-svg-icons';
+import facade from './apiFacade';
 import Search from "./components/Search/Search";
+import CityInfo from "./components/CityInfo/CityInfo";
 import "./App.css";
 
 function App() {
@@ -18,7 +20,10 @@ function App() {
           <Home />
         </Route>
         <Route path="/search">
-          <Search searches={searches} city={city} setSearches={setSearches} />
+          <Search searches={searches} city={city} setSearches={setSearches} facade={facade} />
+        </Route>
+        <Route path="/cityinfo">
+          <CityInfo city={city} facade={facade} />
         </Route>
       </Router>
     </div>
