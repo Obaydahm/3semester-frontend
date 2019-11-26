@@ -71,8 +71,12 @@
 .search-exit {
   filter: invert(1);
   width: 25px;
-  padding: 20px;
+  /*padding: 20px;*/
   cursor: pointer;
+}
+.search-magnifier {
+  padding-right: 10px;
+  font-size: 40px;
 }
 .search-wrapper a:hover {
   color: #dddddd;

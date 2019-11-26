@@ -66,7 +66,7 @@ function Search({ searches, setSearches }) {
             placeholder="Search for a city ..."
           ></input>
           <button onClick={handleSubmit}>
-            <img alt="search-icon" className="search-magnifier" src={magnifier} />
+            <FontAwesomeIcon icon={['fal', 'search-location']} size="2x" className="search-magnifier" />
           </button>
         </div>
       </form>

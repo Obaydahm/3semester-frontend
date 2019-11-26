@@ -3,13 +3,14 @@ import { Route, Link, BrowserRouter as Router } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/pro-solid-svg-icons';
+import { fal } from '@fortawesome/pro-light-svg-icons';
 import facade from './apiFacade';
 import Search from "./components/Search/Search";
 import CityInfo from "./components/CityInfo/CityInfo";
 import "./App.css";
 
 function App() {
-  library.add(fas);
+  library.add(fas, fal);
 
   const [searches, setSearches] = useState([]);
   const [city, setCity] = useState({});
