@@ -1,10 +1,12 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
-import history from "../../history";
 import exit from "./icons/exit.svg";
 import "./Search.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-function Search({ searches, setSearches, search, setSearch }) {
+function Search() {
+  const [searches, setSearches] = useState([]);
+  const [search, setSearch] = useState("");
+
   const iconCloudStyle = {
     fontSize: "60px",
     color: "#f2f8ff"
@@ -15,10 +17,10 @@ function Search({ searches, setSearches, search, setSearch }) {
     marginTop: "27px",
     marginLeft: "-5px"
   };
-
   const spanStyle = {
     padding: "45px 0px"
   };
+
   const history = useHistory();
 
   function handleChange(event) {
