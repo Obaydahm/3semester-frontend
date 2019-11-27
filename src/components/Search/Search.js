@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import exit from "./icons/exit.svg";
 import "./Search.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 function Search() {
+  // localStorage.removeItem("searches");
   const [searches, setSearches] = useState([]);
   const [search, setSearch] = useState("");
 
@@ -26,31 +27,24 @@ function Search() {
   function handleChange(event) {
     setSearch(event.target.value);
   }
-
   function handleSubmit(event) {
     event.preventDefault();
-
-    if (localStorage.getItem("searches") !== null) {
-      searches = localStorage.getItem("searches").split(",");
-    }
-
-    /* If search already exists, remove and at to front */
-    searches = searches.filter(s => s.toLowerCase() !== search.toLowerCase());
-    const capitalized =
+    const capitalizedSearch =
       search.charAt(0).toUpperCase() + search.substring(1).toLowerCase();
-    searches.unshift(capitalized);
-    /* ------------------------------------------------ */
-
-    /* If there are more than 5 searches, remove the first search */
-    if (searches.length > 5) {
-      searches.pop();
+    const loadedSearches = localStorage.getItem("searches");
+    let _searches = [];
+    if (loadedSearches !== null) {
+      _searches = loadedSearches.split(",");
+      _searches = _searches.filter(
+        s => s.toLowerCase() !== search.toLowerCase()
+      );
     }
-    /* ---------------------------------------------------------- */
-
-    setSearches(searches);
+    _searches.unshift(capitalizedSearch);
+    if (_searches.length > 5) _searches.pop();
+    localStorage.setItem("searches", _searches);
+    setSearches(_searches);
     setSearch("");
-    localStorage.setItem("searches", searches);
-    history.push("/" + capitalized);
+    history.push("/" + capitalizedSearch);
   }
 
   return (
