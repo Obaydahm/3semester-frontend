@@ -4,7 +4,7 @@ import "./CityInfo.css";
 import { Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function CityInfo({ facade }) {
+function CityInfo({ city }) {
 
   return (
     <div className="cityinfo-wrapper">

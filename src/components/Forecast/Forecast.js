@@ -6,13 +6,13 @@ import {
   Route,
   useRouteMatch
 } from "react-router-dom";
-function Forecast({ fetchCity }) {
+function Forecast({ facade }) {
   const [city, setCity] = useState("");
   const [notFound, setNotFound] = useState(false);
   let match = useRouteMatch();
   useEffect(() => {
     const fetchData = async () => {
-      const result = await fetchCity(match.params.cityName).catch(e =>
+      const result = await facade.fetchCityInfo(match.params.cityName).catch(e =>
         setNotFound(true)
       );
       setCity(result);
@@ -35,8 +35,8 @@ function Forecast({ fetchCity }) {
       {notFound === true ? (
         <h1>City was not found :-(</h1>
       ) : (
-        JSON.stringify(city)
-      )}
+          JSON.stringify(city)
+        )}
       <br />
       <Link to="/search" style={linkStyle}>
         Search

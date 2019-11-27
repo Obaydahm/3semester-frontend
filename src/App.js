@@ -17,7 +17,7 @@ function App({ facade }) {
             <Search />
           </Route>
           <Route exact path="/:cityName">
-            <Forecast fetchCity={facade.fetchCityInfo} />
+            <Forecast facade={facade} />
           </Route>
         </Switch>
       </Router>
