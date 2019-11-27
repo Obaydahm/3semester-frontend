@@ -9,8 +9,6 @@ import Forecast from "./components/Forecast/Forecast";
 import "./App.css";
 function App({ facade }) {
   library.add(fas, fal);
-  const fetchCity = city => facade.fetchCityInfo(city);
-
   return (
     <div className="App">
       <Router>
@@ -19,7 +17,7 @@ function App({ facade }) {
             <Search />
           </Route>
           <Route exact path="/:cityName">
-            <Forecast fetchCity={fetchCity} />
+            <Forecast fetchCity={facade.fetchCityInfo} />
           </Route>
         </Switch>
       </Router>

@@ -8,15 +8,17 @@ import {
 } from "react-router-dom";
 function Forecast({ fetchCity }) {
   const [city, setCity] = useState("");
+  const [notFound, setNotFound] = useState(false);
   let match = useRouteMatch();
   useEffect(() => {
     const fetchData = async () => {
-      const result = await fetchCity(match.params.cityName);
+      const result = await fetchCity(match.params.cityName).catch(e =>
+        setNotFound(true)
+      );
       setCity(result);
     };
     fetchData();
   }, []);
-  console.log(city);
 
   const linkStyle = {
     fontSize: "20px",
@@ -29,7 +31,12 @@ function Forecast({ fetchCity }) {
           <CityInfo />
         </Route>
       </Router>
-      {localStorage.getItem("searches")}
+
+      {notFound === true ? (
+        <h1>City was not found :-(</h1>
+      ) : (
+        JSON.stringify(city)
+      )}
       <br />
       <Link to="/search" style={linkStyle}>
         Search
