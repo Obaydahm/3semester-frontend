@@ -1,50 +1,42 @@
 import React, { useState, useEffect } from "react";
-import CityInfo from "../CityInfo/CityInfo";
-import {
-  BrowserRouter as Router,
-  Link,
-  Route,
-  useRouteMatch
-} from "react-router-dom";
-function Forecast({ facade }) {
-  const [city, setCity] = useState("");
-  const [notFound, setNotFound] = useState(false);
+import { BrowserRouter as Router, Link, useRouteMatch } from "react-router-dom";
+function Forecast({ notFound, setNotFound, setCity, city, facade }) {
   let match = useRouteMatch();
+  const linkStyle = {
+    fontSize: "20px",
+    color: "#999999"
+  };
   useEffect(() => {
     const fetchData = async () => {
-      const result = await facade.fetchCityInfo(match.params.cityName).catch(e =>
-        setNotFound(true)
-      );
+      const result = await facade
+        .fetchCityInfo(match.params.cityName)
+        .catch(e => setNotFound(true));
       setCity(result);
     };
     fetchData();
   }, []);
 
-  const linkStyle = {
-    fontSize: "20px",
-    color: "#999999"
-  };
   return (
     <div>
-      <Router>
-        <Route path="/cityinfo">
-          <CityInfo />
-        </Route>
-      </Router>
-
       {notFound === true ? (
-        <h1>City was not found :-(</h1>
+        ""
       ) : (
-          JSON.stringify(city)
-        )}
+        <Link to={match.url + "/info"} style={linkStyle}>
+          City Info
+        </Link>
+      )}
       <br />
       <Link to="/search" style={linkStyle}>
         Search
       </Link>
       <br />
-      <Link to="/cityinfo" style={linkStyle}>
-        City Info
-      </Link>
+
+      {notFound === true ? (
+        <h1>City was not found :-(</h1>
+      ) : (
+        <p>{city.cityName}</p>
+      )}
+      <br />
     </div>
   );
 }

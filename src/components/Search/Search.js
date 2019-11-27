@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { BrowserRouter as Router, Link, useHistory } from "react-router-dom";
 import exit from "./icons/exit.svg";
 import "./Search.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-function Search() {
+function Search({ city }) {
   // localStorage.removeItem("searches");
   const [searches, setSearches] = useState([]);
   const [search, setSearch] = useState("");
-
   const iconCloudStyle = {
     fontSize: "60px",
     color: "#f2f8ff"
@@ -44,14 +43,18 @@ function Search() {
     localStorage.setItem("searches", _searches);
     setSearches(_searches);
     setSearch("");
-    history.push("/" + capitalizedSearch);
+    history.push("/forecast/" + capitalizedSearch);
   }
 
   return (
     <div className="search-wrapper">
-      <Link to="/">
-        <img alt="exit-icon" src={exit} className="search-exit" />
-      </Link>
+      {city === null || city === "" ? (
+        ""
+      ) : (
+        <Link to={"/forecast/" + city.cityName}>
+          <img alt="exit-icon" src={exit} className="search-exit" />
+        </Link>
+      )}
 
       <span className="fa-layers fa-fw" style={spanStyle}>
         <FontAwesomeIcon icon="circle" style={iconSunStyle} />
@@ -83,7 +86,7 @@ function Search() {
             .split(",")
             .map((search, index) => (
               <li key={index}>
-                <Link to={search}>{search}</Link>
+                <Link to={"/forecast/" + search}>{search}</Link>
               </li>
             ))
         ) : (
