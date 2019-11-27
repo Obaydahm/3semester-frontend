@@ -23,9 +23,9 @@ function ApiFacade() {
   };
 
   const fetchCityInfo = city => {
-    return fetch(URL + "forecast7/" + city, makeOptions("get"))
-      .then(handleHttpErrors)
-      .catch(err => console.log(err));
+    return fetch(URL + "forecast7/" + city, makeOptions("get")).then(
+      handleHttpErrors
+    );
   };
   return { fetchCityInfo };
 }
