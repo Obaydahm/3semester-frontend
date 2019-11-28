@@ -21,10 +21,10 @@ function Forecast({ notFound, setNotFound, setCity, city, facade }) {
       {notFound === true ? (
         ""
       ) : (
-        <Link to={match.url + "/info"} style={linkStyle}>
-          City Info
-        </Link>
-      )}
+          <Link to={match.url + "/info"} style={linkStyle}>
+            City Info
+          </Link>
+        )}
       <br />
       <Link to="/search" style={linkStyle}>
         Search
@@ -34,8 +34,8 @@ function Forecast({ notFound, setNotFound, setCity, city, facade }) {
       {notFound === true ? (
         <h1>City was not found :-(</h1>
       ) : (
-        <p>{city.cityName}</p>
-      )}
+          <p>{city.cityName}</p>
+        )}
       <br />
     </div>
   );

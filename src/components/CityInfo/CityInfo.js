@@ -5,12 +5,12 @@ import { Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function CityInfo({ city }) {
-
+  console.log(city);
   return (
     <div className="cityinfo-wrapper">
       <div className="cityinfo-topbar">
-        <h1>Copenhagen</h1>
-        <h3>Denmark</h3>
+        <h1>{city.cityName}</h1>
+        <h3>{city.cityInfo.country}</h3>
       </div>
 
       <div className="cityinfo-content">
@@ -26,22 +26,22 @@ function CityInfo({ city }) {
 
               <div className="item">
                 <span className="title">Continent</span>
-                <span>Europe</span>
+                <span>{city.cityInfo.continent}</span>
               </div>
 
               <div className="item">
                 <span className="title">Country</span>
-                <span>Denmark</span>
+                <span>{city.cityInfo.country}</span>
               </div>
 
               <div className="item">
                 <span className="title">State</span>
-                <span>Capital Region of Denmark</span>
+                <span>{city.cityInfo.state}</span>
               </div>
 
               <div className="item">
                 <span className="title">Calling Code</span>
-                <span >+45</span>
+                <span >+{city.cityInfo.callingcode}</span>
               </div>
             </div>
           </Col>
@@ -56,22 +56,22 @@ function CityInfo({ city }) {
 
               <div className="item">
                 <span className="title">Name</span>
-                <span>Danish Krone</span>
+                <span>{city.cityInfo.currency_name}</span>
               </div>
 
               <div className="item">
                 <span className="title">Abbreviation</span>
-                <span>DKK</span>
+                <span>{city.cityInfo.currency_abbreviation}</span>
               </div>
 
               <div className="item">
                 <span className="title">Symbol</span>
-                <span>kr.</span>
+                <span>{city.cityInfo.currency_symbol}</span>
               </div>
 
               <div className="item">
                 <span className="title">Subunit</span>
-                <span >Øre</span>
+                <span >{city.cityInfo.currency_subunit}</span>
               </div>
             </div>
           </Col>
@@ -86,22 +86,22 @@ function CityInfo({ city }) {
 
               <div className="item">
                 <span className="title">Region</span>
-                <span>Europe/Copenhagen</span>
+                <span>{city.cityInfo.timezone_region}</span>
               </div>
 
               <div className="item">
                 <span className="title">Timezone</span>
-                <span>CET - Central Europe Time</span>
+                <span>{city.cityInfo.timezone_short}</span>
               </div>
 
               <div className="item">
                 <span className="title">Offset</span>
-                <span >+0100</span>
+                <span >{city.cityInfo.timezone_offset}</span>
               </div>
 
               <div className="item">
                 <span className="title">Offset in seconds</span>
-                <span>3600</span>
+                <span>{city.cityInfo.timezone_offset_seconds}</span>
               </div>
 
             </div>
@@ -117,12 +117,12 @@ function CityInfo({ city }) {
 
               <div className="item">
                 <span className="title">Drive on</span>
-                <span>Right side</span>
+                <span>{city.cityInfo.roadinfo_driveon}</span>
               </div>
 
               <div className="item">
                 <span className="title">Speed in</span>
-                <span>km/h</span>
+                <span>{city.cityInfo.roadinfo_unit}</span>
               </div>
 
             </div>
@@ -138,7 +138,7 @@ function CityInfo({ city }) {
 
               <div className="item">
                 <span className="title">Direction degree</span>
-                <span>138&#176;</span>
+                <span>{city.cityInfo.qibla}&#176;</span>
               </div>
 
             </div>

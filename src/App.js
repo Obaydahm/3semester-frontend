@@ -22,7 +22,7 @@ function App({ facade }) {
             <Search city={city} />
           </Route>
           <Route exact path="/forecast/:cityName/info">
-            <CityInfo />
+            <CityInfo city={city} />
           </Route>
           <Route exact path="/forecast/:cityName">
             <Forecast
