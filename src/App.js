@@ -13,19 +13,20 @@ function App({ facade }) {
   library.add(fas, fal);
   const [city, setCity] = useState("");
   const [notFound, setNotFound] = useState(false);
-
+  const [search, setSearch] = useState("");
   return (
     <div className="App">
       <Router>
         <Switch>
           <Route exact path="/search">
-            <Search city={city} />
+            <Search city={city} search={search} setSearch={setSearch} />
           </Route>
           <Route exact path="/forecast/:cityName/info">
             <CityInfo city={city} />
           </Route>
           <Route exact path="/forecast/:cityName">
             <Forecast
+              search={search}
               facade={facade}
               notFound={notFound}
               setNotFound={setNotFound}

@@ -3,10 +3,12 @@ import { BrowserRouter as Router, Link, useHistory } from "react-router-dom";
 import exit from "./icons/exit.svg";
 import "./Search.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-function Search({ city }) {
+function Search({ city, search, setSearch }) {
   // localStorage.removeItem("searches");
   const [searches, setSearches] = useState([]);
-  const [search, setSearch] = useState("");
+  function handleHref(event) {
+    setSearch(event.target.innerHTML.toLowerCase());
+  }
   const iconCloudStyle = {
     fontSize: "60px",
     color: "#f2f8ff"
@@ -42,16 +44,15 @@ function Search({ city }) {
     if (_searches.length > 5) _searches.pop();
     localStorage.setItem("searches", _searches);
     setSearches(_searches);
-    setSearch("");
-    history.push("/forecast/" + capitalizedSearch);
+    history.push("/forecast/" + search);
   }
 
   return (
     <div className="search-wrapper">
-      {city === null || city === "" ? (
+      {city === undefined || city === "" ? (
         ""
       ) : (
-        <Link to={"/forecast/" + city.cityName}>
+        <Link to={"/forecast/" + search}>
           <img alt="exit-icon" src={exit} className="search-exit" />
         </Link>
       )}
@@ -86,7 +87,12 @@ function Search({ city }) {
             .split(",")
             .map((search, index) => (
               <li key={index}>
-                <Link to={"/forecast/" + search}>{search}</Link>
+                <Link
+                  onClick={handleHref}
+                  to={"/forecast/" + search.toLowerCase()}
+                >
+                  {search}
+                </Link>
               </li>
             ))
         ) : (
