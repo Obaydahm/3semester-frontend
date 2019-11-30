@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 import "./CityInfo.css";
-import { Row, Col } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Row, Col } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function CityInfo({ city }) {
-  console.log(city);
   return (
     <div className="cityinfo-wrapper">
       <div className="cityinfo-topbar">
@@ -15,10 +14,8 @@ function CityInfo({ city }) {
 
       <div className="cityinfo-content">
         <Row>
-
           <Col md="4">
             <div className="cityinfo-content-box">
-
               <div className="icon">
                 <FontAwesomeIcon icon="question-circle" />
               </div>
@@ -41,14 +38,13 @@ function CityInfo({ city }) {
 
               <div className="item">
                 <span className="title">Calling Code</span>
-                <span >+{city.cityInfo.callingcode}</span>
+                <span>+{city.cityInfo.callingcode}</span>
               </div>
             </div>
           </Col>
 
           <Col md="4">
             <div className="cityinfo-content-box">
-
               <div className="icon">
                 <FontAwesomeIcon icon="usd-circle" />
               </div>
@@ -71,14 +67,13 @@ function CityInfo({ city }) {
 
               <div className="item">
                 <span className="title">Subunit</span>
-                <span >{city.cityInfo.currency_subunit}</span>
+                <span>{city.cityInfo.currency_subunit}</span>
               </div>
             </div>
           </Col>
 
           <Col md="4">
             <div className="cityinfo-content-box">
-
               <div className="icon">
                 <FontAwesomeIcon icon="clock" />
               </div>
@@ -96,20 +91,18 @@ function CityInfo({ city }) {
 
               <div className="item">
                 <span className="title">Offset</span>
-                <span >{city.cityInfo.timezone_offset}</span>
+                <span>{city.cityInfo.timezone_offset}</span>
               </div>
 
               <div className="item">
                 <span className="title">Offset in seconds</span>
                 <span>{city.cityInfo.timezone_offset_seconds}</span>
               </div>
-
             </div>
           </Col>
 
           <Col md="4">
             <div className="cityinfo-content-box">
-
               <div className="icon">
                 <FontAwesomeIcon icon="road" />
               </div>
@@ -124,13 +117,11 @@ function CityInfo({ city }) {
                 <span className="title">Speed in</span>
                 <span>{city.cityInfo.roadinfo_unit}</span>
               </div>
-
             </div>
           </Col>
 
           <Col md="4">
             <div className="cityinfo-content-box">
-
               <div className="icon">
                 <FontAwesomeIcon icon="kaaba" />
               </div>
@@ -140,10 +131,8 @@ function CityInfo({ city }) {
                 <span className="title">Direction degree</span>
                 <span>{city.cityInfo.qibla}&#176;</span>
               </div>
-
             </div>
           </Col>
-
         </Row>
       </div>
     </div>

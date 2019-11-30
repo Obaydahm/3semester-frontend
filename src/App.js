@@ -7,6 +7,7 @@ import { fal } from "@fortawesome/pro-light-svg-icons";
 import Search from "./components/Search/Search";
 import Forecast from "./components/Forecast/Forecast";
 import CityInfo from "./components/CityInfo/CityInfo";
+import WeatherInfo from "./components/WeatherInfo/WeatherInfo";
 import "./App.css";
 
 function App({ facade }) {
@@ -27,11 +28,21 @@ function App({ facade }) {
           <Route exact path="/forecast/:cityName">
             <Forecast
               search={search}
+              setSearch={setSearch}
               facade={facade}
               notFound={notFound}
               setNotFound={setNotFound}
               city={city}
               setCity={setCity}
+            />
+          </Route>
+          <Route exact path="/forecast/:cityName/:date">
+            <WeatherInfo
+              city={city}
+              setCity={setCity}
+              facade={facade}
+              setNotFound={setNotFound}
+              notFound={notFound}
             />
           </Route>
         </Switch>

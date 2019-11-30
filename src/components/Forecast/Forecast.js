@@ -1,11 +1,15 @@
 import React, { useEffect } from "react";
 import { Link, useRouteMatch } from "react-router-dom";
-function Forecast({ notFound, setNotFound, setCity, city, facade, search }) {
-  let match = useRouteMatch();
-  const linkStyle = {
-    fontSize: "20px",
-    color: "#999999"
-  };
+function Forecast({
+  notFound,
+  setNotFound,
+  setCity,
+  city,
+  facade,
+  search,
+  setSearch
+}) {
+  const match = useRouteMatch();
   useEffect(() => {
     const fetchData = async () => {
       const result = await facade
@@ -13,25 +17,36 @@ function Forecast({ notFound, setNotFound, setCity, city, facade, search }) {
         .then(setNotFound(false))
         .catch(e => setNotFound(true));
       setCity(result);
+      setSearch(match.params.cityName); // necessary if you type the city manually in the url
+      localStorage.setItem("search", match.params.cityName);
     };
     fetchData();
   }, []);
+
   return (
     <div>
       {notFound === true ? (
-        ""
+        <h1>404</h1>
       ) : (
-        <Link to={match.url + "/info"} style={linkStyle}>
-          City Info
-        </Link>
+        <div>
+          <h1>{search}</h1>
+          <Link to={match.url + "/info"} className="link-style">
+            City Info
+          </Link>
+          {city !== "" && city !== undefined
+            ? city.weatherList.map((w, i) => (
+                <Link key={i} to={match.url + "/" + w.date}>
+                  {w.date}
+                </Link>
+              ))
+            : "Loading..."}
+        </div>
       )}
       <br />
-      <Link to="/search" style={linkStyle}>
+      <Link to="/search" className="link-style">
         Search
       </Link>
       <br />
-      <h1>{search}</h1>
-      {notFound === true ? <h1>not found</h1> : JSON.stringify(city)}
       <br />
     </div>
   );

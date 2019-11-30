@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Link, useHistory } from "react-router-dom";
 import exit from "./icons/exit.svg";
 import "./Search.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 function Search({ city, search, setSearch }) {
-  // localStorage.removeItem("searches");
   const [searches, setSearches] = useState([]);
   function handleHref(event) {
     setSearch(event.target.innerHTML.toLowerCase());
@@ -45,6 +44,7 @@ function Search({ city, search, setSearch }) {
     localStorage.setItem("searches", _searches);
     setSearches(_searches);
     history.push("/forecast/" + search);
+    setSearch("");
   }
 
   return (
@@ -66,6 +66,8 @@ function Search({ city, search, setSearch }) {
       <form className="search-form" onSubmit={handleSubmit}>
         <div className="search-bar">
           <input
+            onFocus={element => (element.target.value = "")}
+            id="search-input"
             onChange={handleChange}
             type="text"
             value={search}
