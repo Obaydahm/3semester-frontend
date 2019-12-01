@@ -5,7 +5,7 @@ function WeatherInfo({ city, setCity, facade, notFound, setNotFound }) {
   let weatherInfo;
   let result = "";
   if (city !== "") {
-    result = city.weatherList.find(w => w.date == match.params.date);
+    result = city.weatherList.find(w => w.date === match.params.date);
     weatherInfo = result;
   } else {
     facade
@@ -22,10 +22,22 @@ function WeatherInfo({ city, setCity, facade, notFound, setNotFound }) {
     ) : result === undefined ? (
       <p>invalid date !</p>
     ) : (
-      <p>Loading info !</p>
-    )
+          <p>Loading info !</p>
+        )
   ) : (
-    <p>{weatherInfo.pop}</p>
-  );
+      <div>
+        <h3>{city.cityName + ", " + city.cityInfo.country}</h3>
+        <ul>
+          <li>Average temperature: {weatherInfo.temp}</li>
+          <li>Weather description: {weatherInfo.weatherDescription}</li>
+          <li>Cloud coverage: {weatherInfo.clouds}%</li>
+          <li>Sunrise: {weatherInfo.sunrise}</li>
+          <li>Sunset: {weatherInfo.sunset}</li>
+          <li>Rain probability: {weatherInfo.pop}%</li>
+          <li>Humidity: {weatherInfo.humidity}</li>
+          <li>Windspeed: {Math.round(weatherInfo.windSpeed * 10) / 10} m/s</li>
+        </ul>
+      </div>
+    );
 }
 export default WeatherInfo;
