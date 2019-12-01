@@ -8,6 +8,7 @@ import Search from "./components/Search/Search";
 import Forecast from "./components/Forecast/Forecast";
 import CityInfo from "./components/CityInfo/CityInfo";
 import WeatherInfo from "./components/WeatherInfo/WeatherInfo";
+import Events from "./components/Events/Events";
 import "./App.css";
 
 function App({ facade }) {
@@ -38,6 +39,13 @@ function App({ facade }) {
           </Route>
           <Route exact path="/forecast/:cityName/:date">
             <WeatherInfo
+              city={city}
+              setCity={setCity}
+              facade={facade}
+              setNotFound={setNotFound}
+              notFound={notFound}
+            />
+            <Events
               city={city}
               setCity={setCity}
               facade={facade}

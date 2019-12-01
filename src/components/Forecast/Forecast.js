@@ -52,13 +52,20 @@ function Forecast({
             <h1>{search}</h1>
             <Link to={match.url + "/info"} className="link-style">
               City Info
-          </Link>
+            </Link>
             {city !== "" && city !== undefined
-              ? city.weatherList.map((w, i) => (
-                <Link key={i} to={match.url + "/" + w.date}>
-                  {w.date}
-                </Link>
-              ))
+              ? (
+                <ul>
+                  {
+                    city.weatherList.map((w, i) => (
+                      <li key={i}><Link to={match.url + "/" + w.date}>
+                        {w.date}
+                      </Link>
+                      </li>
+                    ))
+                  }
+                </ul>
+              )
               : "Loading..."}
           </div>
         )}
