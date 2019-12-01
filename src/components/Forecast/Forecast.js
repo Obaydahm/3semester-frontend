@@ -73,15 +73,49 @@ function Forecast({
 }
 function getBackground(city) {
   let code;
+  const today = new Date();
+  const currentHour = today.getHours();
+
   if (city !== null && city !== undefined && city !== "") {
     code = city.weatherList[0].weatherCode;
   }
-  if (code >= 200 && code < 300) return "--thunderstorm";
-  if (code >= 500 && code < 600) return "--cloudy-day";
-  if (code >= 600 && code < 700) return "--snowy-day";
-  if (code >= 700 && code < 800) return "--foggy-day";
-  if (code == 800) return "--clear-day";
-  else {
+  if (code >= 200 && code < 300) {
+    if (
+      currentHour >= city.weatherList[0].sunset &&
+      currentHour >= city.weatherList[0].sunrise
+    )
+      return "--thunderstorm-night";
+    return "--thunderstorm-day";
+  }
+  if (code >= 500 && code < 600) {
+    if (currentHour > city.weatherList[0].sunset) return "--cloudy-night";
+    return "--cloudy-day";
+  }
+  if (code >= 600 && code < 700) {
+    if (
+      currentHour >= city.weatherList[0].sunset &&
+      currentHour >= city.weatherList[0].sunrise
+    )
+      return "--snowy-night";
+    return "--snowy-day";
+  }
+  if (code >= 700 && code < 800) {
+    if (
+      currentHour >= city.weatherList[0].sunset &&
+      currentHour >= city.weatherList[0].sunrise
+    )
+      return "--foggy-night";
+    return "--foggy-day";
+  }
+  if (code == 800) {
+    if (
+      currentHour >= city.weatherList[0].sunset &&
+      currentHour >= city.weatherList[0].sunrise
+    )
+      return "--clear-night";
+    return "--clear-day";
+  } else {
+    if (currentHour > city.weatherList[0].sunset) return "--cloudy-night";
     return "--cloudy-day";
   }
 }

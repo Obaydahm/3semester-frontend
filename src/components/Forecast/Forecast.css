@@ -3,7 +3,12 @@
   --foggy-day: linear-gradient(to bottom, #cdcdcd, #aacbe2);
   --cloudy-day: linear-gradient(to bottom, #5494b2, #a5bdca);
   --clear-day: linear-gradient(to bottom, #3da7f4, #a0d7ff);
-  --thunderstorm: black;
+  --thunderstorm-day: black;
+  --snowy-night: linear-gradient(to bottom, #c2dbff, #f0f0f0);
+  --foggy-night: linear-gradient(to bottom, #cdcdcd, #aacbe2);
+  --cloudy-night: linear-gradient(to bottom, #5494b2, #a5bdca);
+  --clear-night: linear-gradient(to bottom, #3da7f4, #a0d7ff);
+  --thunderstorm-night: black;
 }
 .link-style {
   font-size: "20px";
