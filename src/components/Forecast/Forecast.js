@@ -37,7 +37,8 @@ function Forecast({
         setCity(data);
         setSearch(match.params.cityName); // necessary if you type the city manually in the url
         document.body.style =
-          "background: " + bodyStyles.getPropertyValue(getBackground(data));
+          "background-image: " +
+          bodyStyles.getPropertyValue(getBackground(data));
       })
       .catch(e => setNotFound(true));
   }, []);
