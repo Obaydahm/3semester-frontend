@@ -10,17 +10,36 @@ function Forecast({
   setSearch
 }) {
   const match = useRouteMatch();
+  /* for some reason i can't use the variables from css-file :-( */
+  document.body.style.setProperty(
+    "--snowy-day",
+    "linear-gradient(to bottom, #c2dbff, #f0f0f0)"
+  );
+  document.body.style.setProperty(
+    "--foggy-day",
+    "linear-gradient(to bottom, #cdcdcd, #aacbe2)"
+  );
+  document.body.style.setProperty(
+    "--cloudy-day",
+    "linear-gradient(to bottom, #5494b2, #a5bdca)"
+  );
+  document.body.style.setProperty(
+    "--clear-day",
+    "linear-gradient(to bottom, #3da7f4, #a0d7ff)"
+  );
+  var bodyStyles = window.getComputedStyle(document.body);
+  /* ------------------------------------------------------------------- */
   useEffect(() => {
-    const fetchData = async () => {
-      const result = await facade
-        .fetchCityInfo(match.params.cityName)
-        .then(setNotFound(false))
-        .catch(e => setNotFound(true));
-      setCity(result);
-      setSearch(match.params.cityName); // necessary if you type the city manually in the url
-      localStorage.setItem("search", match.params.cityName);
-    };
-    fetchData();
+    facade
+      .fetchCityInfo(match.params.cityName)
+      .then(data => {
+        setNotFound(false);
+        setCity(data);
+        setSearch(match.params.cityName); // necessary if you type the city manually in the url
+        document.body.style =
+          "background: " + bodyStyles.getPropertyValue(getBackground(data));
+      })
+      .catch(e => setNotFound(true));
   }, []);
 
   return (
@@ -50,5 +69,19 @@ function Forecast({
       <br />
     </div>
   );
+}
+function getBackground(city) {
+  let code;
+  if (city !== null && city !== undefined && city !== "") {
+    code = city.weatherList[0].weatherCode;
+  }
+  if (code >= 200 && code < 300) return "--thunderstorm";
+  if (code >= 500 && code < 600) return "--cloudy-day";
+  if (code >= 600 && code < 700) return "--snowy-day";
+  if (code >= 700 && code < 800) return "--foggy-day";
+  if (code == 800) return "--clear-day";
+  else {
+    return "--cloudy-day";
+  }
 }
 export default Forecast;

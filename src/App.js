@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { library } from "@fortawesome/fontawesome-svg-core";

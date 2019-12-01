@@ -1,3 +1,10 @@
+:root {
+  --snowy-day: linear-gradient(to bottom, #c2dbff, #f0f0f0);
+  --foggy-day: linear-gradient(to bottom, #cdcdcd, #aacbe2);
+  --cloudy-day: linear-gradient(to bottom, #5494b2, #a5bdca);
+  --clear-day: linear-gradient(to bottom, #3da7f4, #a0d7ff);
+  --thunderstorm: black;
+}
 .link-style {
   font-size: "20px";
   color: "#999999";

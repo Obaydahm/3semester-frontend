@@ -4,7 +4,6 @@ function WeatherInfo({ city, setCity, facade, notFound, setNotFound }) {
   const match = useRouteMatch();
   let weatherInfo;
   let result = "";
-
   if (city !== "") {
     result = city.weatherList.find(w => w.date == match.params.date);
     weatherInfo = result;

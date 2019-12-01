@@ -4,6 +4,7 @@ import exit from "./icons/exit.svg";
 import "./Search.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 function Search({ city, search, setSearch }) {
+  document.body.style = "background: #34303b;";
   const [searches, setSearches] = useState([]);
   function handleHref(event) {
     setSearch(event.target.innerHTML.toLowerCase());
