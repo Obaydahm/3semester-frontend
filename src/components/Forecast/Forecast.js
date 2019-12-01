@@ -48,20 +48,20 @@ function Forecast({
       {notFound === true ? (
         <h1>404</h1>
       ) : (
-        <div>
-          <h1>{search}</h1>
-          <Link to={match.url + "/info"} className="link-style">
-            City Info
+          <div>
+            <h1>{search}</h1>
+            <Link to={match.url + "/info"} className="link-style">
+              City Info
           </Link>
-          {city !== "" && city !== undefined
-            ? city.weatherList.map((w, i) => (
+            {city !== "" && city !== undefined
+              ? city.weatherList.map((w, i) => (
                 <Link key={i} to={match.url + "/" + w.date}>
                   {w.date}
                 </Link>
               ))
-            : "Loading..."}
-        </div>
-      )}
+              : "Loading..."}
+          </div>
+        )}
       <br />
       <Link to="/search" className="link-style">
         Search
@@ -107,7 +107,7 @@ function getBackground(city) {
       return "--foggy-night";
     return "--foggy-day";
   }
-  if (code == 800) {
+  if (code === 800) {
     if (
       currentHour >= city.weatherList[0].sunset &&
       currentHour >= city.weatherList[0].sunrise

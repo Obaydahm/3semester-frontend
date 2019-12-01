@@ -27,6 +27,15 @@ function ApiFacade() {
       handleHttpErrors
     );
   };
-  return { fetchCityInfo };
+
+  const fetchEvents = (city, date) => {
+    const eventsURL = "https://runivn.dk/3SEMPROJECT/api/resource/events?"
+      + "startdate=" + date
+      + "&enddate=" + date
+      + "&country=" + city.cityInfo.country
+      + "&city=" + city.cityName;
+    return fetch(eventsURL, makeOptions("get")).then(handleHttpErrors);
+  };
+  return { fetchCityInfo, fetchEvents };
 }
 export default ApiFacade();
