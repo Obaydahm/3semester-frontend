@@ -1,34 +1,9 @@
 import React, { useEffect } from "react";
+import "./Forecast.css";
 import { Link, useRouteMatch } from "react-router-dom";
-function Forecast({
-  notFound,
-  setNotFound,
-  setCity,
-  city,
-  facade,
-  search,
-  setSearch
-}) {
+function Forecast({ notFound, setNotFound, setCity, city, facade, setSearch }) {
   const match = useRouteMatch();
-  /* for some reason i can't use the variables from css-file :-( */
-  document.body.style.setProperty(
-    "--snowy-day",
-    "linear-gradient(to bottom, #c2dbff, #f0f0f0)"
-  );
-  document.body.style.setProperty(
-    "--foggy-day",
-    "linear-gradient(to bottom, #cdcdcd, #aacbe2)"
-  );
-  document.body.style.setProperty(
-    "--cloudy-day",
-    "linear-gradient(to bottom, #5494b2, #a5bdca)"
-  );
-  document.body.style.setProperty(
-    "--clear-day",
-    "linear-gradient(to bottom, #3da7f4, #a0d7ff)"
-  );
   var bodyStyles = window.getComputedStyle(document.body);
-  /* ------------------------------------------------------------------- */
   useEffect(() => {
     facade
       .fetchCityInfo(match.params.cityName)
@@ -48,27 +23,24 @@ function Forecast({
       {notFound === true ? (
         <h1>404</h1>
       ) : (
-          <div>
-            <h1>{search}</h1>
-            <Link to={match.url + "/info"} className="link-style">
-              City Info
-            </Link>
-            {city !== "" && city !== undefined
-              ? (
-                <ul>
-                  {
-                    city.weatherList.map((w, i) => (
-                      <li key={i}><Link to={match.url + "/" + w.date}>
-                        {w.date}
-                      </Link>
-                      </li>
-                    ))
-                  }
-                </ul>
-              )
-              : "Loading..."}
-          </div>
-        )}
+        <div>
+          <h1 className="forecast-city-name">{city.cityName}</h1>
+          <Link to={match.url + "/info"} className="link-style">
+            City Info
+          </Link>
+          {city !== "" && city !== undefined ? (
+            <ul>
+              {city.weatherList.map((w, i) => (
+                <li key={i}>
+                  <Link to={match.url + "/" + w.date}>{w.date}</Link>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            "Loading..."
+          )}
+        </div>
+      )}
       <br />
       <Link to="/search" className="link-style">
         Search
@@ -82,48 +54,33 @@ function getBackground(city) {
   let code;
   const today = new Date();
   const currentHour = today.getHours();
+  const sunrise = Number(city.weatherList[0].sunrise.substring(0, 2));
+  const sunset = Number(city.weatherList[0].sunset.substring(0, 2));
 
   if (city !== null && city !== undefined && city !== "") {
     code = city.weatherList[0].weatherCode;
   }
-  if (code >= 200 && code < 300) {
-    if (
-      currentHour >= city.weatherList[0].sunset &&
-      currentHour >= city.weatherList[0].sunrise
-    )
+  switch (true) {
+    case code >= 200 && code < 300:
+      if (currentHour >= sunrise && currentHour <= sunset)
+        return "--thunderstorm-day";
       return "--thunderstorm-night";
-    return "--thunderstorm-day";
-  }
-  if (code >= 500 && code < 600) {
-    if (currentHour > city.weatherList[0].sunset) return "--cloudy-night";
-    return "--cloudy-day";
-  }
-  if (code >= 600 && code < 700) {
-    if (
-      currentHour >= city.weatherList[0].sunset &&
-      currentHour >= city.weatherList[0].sunrise
-    )
+    case code >= 500 && code < 600:
+      if (currentHour > sunset) return "--cloudy-day";
+      return "--cloudy-night";
+    case code >= 600 && code < 700:
+      if (currentHour >= sunrise && currentHour <= sunset) return "--snowy-day";
       return "--snowy-night";
-    return "--snowy-day";
-  }
-  if (code >= 700 && code < 800) {
-    if (
-      currentHour >= city.weatherList[0].sunset &&
-      currentHour >= city.weatherList[0].sunrise
-    )
+    case code >= 700 && code < 800:
+      if (currentHour >= sunrise && currentHour <= sunset) return "--foggy-day";
       return "--foggy-night";
-    return "--foggy-day";
-  }
-  if (code === 800) {
-    if (
-      currentHour >= city.weatherList[0].sunset &&
-      currentHour >= city.weatherList[0].sunrise
-    )
-      return "--clear-night";
-    return "--clear-day";
-  } else {
-    if (currentHour > city.weatherList[0].sunset) return "--cloudy-night";
-    return "--cloudy-day";
+    case code > 800:
+      if (currentHour >= sunrise && currentHour <= sunset)
+        return "--cloudy-day";
+      return "--cloudy-night";
+    default:
+      return "--clear-day";
   }
 }
+
 export default Forecast;

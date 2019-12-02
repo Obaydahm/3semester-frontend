@@ -4,11 +4,18 @@
   --cloudy-day: linear-gradient(to bottom, #5494b2, #a5bdca);
   --clear-day: linear-gradient(to bottom, #3da7f4, #a0d7ff);
   --thunderstorm-day: black;
-  --snowy-night: linear-gradient(to bottom, #c2dbff, #f0f0f0);
+  --snowy-night: linear-gradient(to bottom, #30373f, #353535);
   --foggy-night: linear-gradient(to bottom, #cdcdcd, #aacbe2);
-  --cloudy-night: linear-gradient(to bottom, #5494b2, #a5bdca);
+  --cloudy-night: linear-gradient(to bottom, #131f25, #15181a);
   --clear-night: linear-gradient(to bottom, #3da7f4, #a0d7ff);
   --thunderstorm-night: black;
+}
+.forecast-city-name {
+  color: white;
+  text-align: center;
+  font-weight: 200;
+  margin: 30px;
+  font-size: 50px;
 }
 .link-style {
   font-size: "20px";
