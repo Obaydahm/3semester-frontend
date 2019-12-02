@@ -19,6 +19,7 @@ function App({ facade }) {
   const [city, setCity] = useState("");
   const [notFound, setNotFound] = useState(false);
   const [search, setSearch] = useState("");
+  const [hours, setHours] = useState("");
   const weekday = new Array(7);
   weekday[0] = "Sunday";
   weekday[1] = "Monday";
@@ -39,6 +40,8 @@ function App({ facade }) {
           </Route>
           <Route exact path="/forecast/:cityName">
             <Forecast
+              hours={hours}
+              setHours={setHours}
               weekday={weekday}
               search={search}
               setSearch={setSearch}

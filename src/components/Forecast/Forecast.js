@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./Forecast.css";
 import { Link, useRouteMatch } from "react-router-dom";
-import { Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 function Forecast({
   notFound,
@@ -10,7 +9,9 @@ function Forecast({
   city,
   facade,
   setSearch,
-  weekday
+  weekday,
+  hours,
+  setHours
 }) {
   const match = useRouteMatch();
   var bodyStyles = window.getComputedStyle(document.body);
@@ -26,9 +27,17 @@ function Forecast({
           "background-image: " +
           bodyStyles.getPropertyValue(getBackground(data));
       })
-      .catch(e => setNotFound(true));
+      .catch(e => {
+        setNotFound(true);
+        setCity("");
+      });
+    facade
+      .fetchHourlyTemp(match.params.cityName)
+      .then(data => setHours(data))
+      .catch(e => {
+        console.log(e);
+      });
   }, []);
-
   return (
     <div>
       {notFound === true ? (
@@ -49,6 +58,17 @@ function Forecast({
                         <h1 className="forecast-temp">
                           {city.weatherList[0].temp}°
                         </h1>
+                        <p className="forecast-day">Today</p>
+                        <ul className="forecast-hour-ul">
+                          {Object.keys(hours).map((key, index) => (
+                            <li key={index} className="forecast-hour-li">
+                              <div className="forecast-li-wrap">
+                                {index === 0 ? <p>Now</p> : <p>{key}</p>}
+                                <p>{hours[key]}°</p>
+                              </div>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
                     </Link>
                   </div>
