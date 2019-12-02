@@ -4,6 +4,7 @@ import { Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function CityInfo({ city }) {
+  document.body.style = "background: #fff";
   return (
     <div className="cityinfo-wrapper">
       <div className="cityinfo-topbar">
