@@ -30,7 +30,7 @@ function Events({ city, setCity, facade, notFound, setNotFound }) {
     <div className="event-wrapper">
       {
         eventsNotFound ? (
-          <p>No events was found for that specific date</p>
+          <div className="event-error">No events was found for that specific date</div>
         )
           :
           (
@@ -39,17 +39,17 @@ function Events({ city, setCity, facade, notFound, setNotFound }) {
                 <div className="event-name">{event.eventName}</div>
                 <div className="event-details">
                   <div className="detail">
-                    <label>Date</label>
-                    <div>{event.eventDate}</div>
+                    <label className="detail-label">Date</label>
+                    <span>{event.eventDate}</span>
                   </div>
 
                   <div className="detail">
-                    <label>Address</label>
-                    <div>{event.eventAddress}</div>
+                    <label className="detail-label">Address</label>
+                    <span>{event.eventAddress}</span>
                   </div>
 
-                  <a href={event.eventURL} target="_blank" rel="noopener noreferrer">
-                    <span>Get tickets</span>
+                  <a className="event-link" href={event.eventURL} target="_blank" rel="noopener noreferrer">
+                    <span className="event-link-text">Get tickets</span>
                     <FontAwesomeIcon icon="ticket-alt" />
                   </a>
 

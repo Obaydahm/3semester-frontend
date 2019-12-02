@@ -1,33 +1,35 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
-@media only screen and (min-width: 550px){
-  .event-details{
-    width: 400px!important;
-  }
-
-  .event {
-    width: 600px!important;
-  }
-}
-
-body {
-  margin: 15px;
-}
 
 div.event-wrapper {
   width: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
+  padding: 15px;
+}
+
+div.event-error {
+  border: 1px solid rgba(0, 0, 0, 0.20);
+  font-size: 18px;
+  padding: 15px 30px;
+  border-radius: 3px;
+  filter: invert(100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
 }
 
 div.event {
   padding: 15px;
   width: 100%;
+  max-width: 600px;
   display: flex;
   align-items: center;
   flex-direction: column;
   font-family: 'Montserrat', sans-serif;
-  border: 1px solid #fff;
+  border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: 3px;
   margin-top: 10px;
 }
@@ -48,16 +50,22 @@ div.event .event-details{
   justify-content: space-between;
   filter: invert(100%);
   width: 100%;
+  max-width: 400px;
   align-items: center;
 }
 
-div.event .event-details .detail label{
+div.event .event-details .detail {
+  display: flex;
+  flex-direction: column;
+}
+
+div.event .event-details .detail label.detail-label{
   text-transform: uppercase;
   font-weight: 800;
   margin-bottom: 0;
 }
 
-div.event .event-details a {
+div.event .event-details a.event-link {
   padding: 10px;
   filter: invert(100%);
   border-radius: 3px;
@@ -74,17 +82,17 @@ div.event .event-details a {
   text-decoration: none;
 }
 
-div.event .event-details a:hover {
+div.event .event-details a.event-link:hover {
   background-color: #007bff;
   color: #fff;
 }
 
-div.event .event-details a:active {
+div.event .event-details a.event-link:active {
   background-color: #0069db;
   margin-top: 5px;
 }
 
-div.event .event-details a span {
+div.event .event-details a.event-link span.event-link-text {
   padding-right: 10px;
 
 }
