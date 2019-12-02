@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
+@media only screen and (max-width: 767px){
+  ul.events-ul{
+    height: 100%!important;
+  }
+}
+
 div.event-wrapper {
   width: 100%;
   display: flex;
@@ -9,19 +15,28 @@ div.event-wrapper {
 }
 
 div.event-error {
-  border: 1px solid rgba(0, 0, 0, 0.20);
+  border: 1px solid #919191;
   font-size: 18px;
   padding: 15px 30px;
   border-radius: 3px;
-  filter: invert(100%);
   display: flex;
-  flex-direction: column;
   align-items: center;
   width: 100%;
   max-width: 600px;
+  color: #b1b1b1;
 }
 
-div.event {
+ul.events-ul{
+  list-style-type: none;
+  margin:0px;
+  padding:0px;
+  height: 90vh;
+  overflow-y: auto;
+}
+
+li.event:first-child{margin-top:0px;}
+
+li.event {
   padding: 15px;
   width: 100%;
   max-width: 600px;
@@ -32,42 +47,40 @@ div.event {
   border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: 3px;
   margin-top: 10px;
+  color: #f1f1f1;
 }
 
-div.event .event-name{
+li.event .event-name{
   padding: 5px 0px;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  filter: invert(100%);
   font-size: 26px;
   font-weight: 700;
 }
 
-div.event .event-details{
+li.event .event-details{
   display: flex;
   justify-content: space-between;
-  filter: invert(100%);
   width: 100%;
   max-width: 400px;
   align-items: center;
 }
 
-div.event .event-details .detail {
+li.event .event-details .detail {
   display: flex;
   flex-direction: column;
 }
 
-div.event .event-details .detail label.detail-label{
+li.event .event-details .detail label.detail-label{
   text-transform: uppercase;
   font-weight: 800;
   margin-bottom: 0;
 }
 
-div.event .event-details a.event-link {
+li.event .event-details a.event-link {
   padding: 10px;
-  filter: invert(100%);
   border-radius: 3px;
   background-color: #e7e7e7;
   color:#141E24;
@@ -77,22 +90,17 @@ div.event .event-details a.event-link {
   display: flex;
   align-items: center;
   height: 40px;
-  width: 160px;
-  min-width: 160px;
+  min-width: 140px;
   text-decoration: none;
+  justify-content: center;
 }
 
-div.event .event-details a.event-link:hover {
+li.event .event-details a.event-link:hover {
   background-color: #007bff;
   color: #fff;
 }
 
-div.event .event-details a.event-link:active {
+li.event .event-details a.event-link:active {
   background-color: #0069db;
   margin-top: 5px;
-}
-
-div.event .event-details a.event-link span.event-link-text {
-  padding-right: 10px;
-
 }

@@ -30,33 +30,42 @@ function Events({ city, setCity, facade, notFound, setNotFound }) {
     <div className="event-wrapper">
       {
         eventsNotFound ? (
-          <div className="event-error">No events was found for that specific date</div>
+          <div className="event-error">
+            No events was found for that specific date
+            <span role="img" aria-label="crying-smiley" className="no-invert">
+              &#128557;
+            </span>
+          </div>
         )
           :
           (
-            events.map((event, i) => (
-              <div key={i} className="event">
-                <div className="event-name">{event.eventName}</div>
-                <div className="event-details">
-                  <div className="detail">
-                    <label className="detail-label">Date</label>
-                    <span>{event.eventDate}</span>
-                  </div>
+            <ul className="events-ul">
+              {
+                events.map((event, i) => (
+                  <li key={i} className="event">
+                    <div className="event-name">{event.eventName}</div>
+                    <div className="event-details">
+                      <div className="detail">
+                        <label className="detail-label">Date</label>
+                        <span>{event.eventDate}</span>
+                      </div>
 
-                  <div className="detail">
-                    <label className="detail-label">Address</label>
-                    <span>{event.eventAddress}</span>
-                  </div>
+                      <div className="detail">
+                        <label className="detail-label">Address</label>
+                        <span>{event.eventAddress}</span>
+                      </div>
 
-                  <a className="event-link" href={event.eventURL} target="_blank" rel="noopener noreferrer">
-                    <span className="event-link-text">Get tickets</span>
-                    <FontAwesomeIcon icon="ticket-alt" />
-                  </a>
+                      <a className="event-link" href={event.eventURL} target="_blank" rel="noopener noreferrer">
+                        Get tickets
 
-                </div>
+                      </a>
 
-              </div>
-            ))
+                    </div>
+
+                  </li>
+                ))
+              }
+            </ul>
           )
       }
     </div>

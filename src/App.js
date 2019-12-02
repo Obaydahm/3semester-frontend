@@ -54,7 +54,7 @@ function App({ facade }) {
           </Route>
           <Route exact path="/forecast/:cityName/:date">
             <Container>
-              <Row>
+              <Row className="h-100vh d-flex align-items-center">
                 <Col md="6" className="d-flex">
                   <WeatherInfo
                     weekday={weekday}
