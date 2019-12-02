@@ -51,16 +51,14 @@ function Events({ city, setCity, facade, notFound, setNotFound }) {
                       </div>
 
                       <div className="detail">
-                        <label className="detail-label">Address</label>
+                        <label className="detail-label text-right">Address</label>
                         <span>{event.eventAddress}</span>
                       </div>
-
-                      <a className="event-link" href={event.eventURL} target="_blank" rel="noopener noreferrer">
-                        Get tickets
-
-                      </a>
-
                     </div>
+
+                    <a className="event-link" href={event.eventURL} target="_blank" rel="noopener noreferrer">
+                      Get tickets
+                    </a>
 
                   </li>
                 ))

@@ -11,7 +11,7 @@ div.event-wrapper {
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin: 30px;
+  padding: 20px;
 }
 
 div.event-error {
@@ -79,7 +79,7 @@ li.event .event-details .detail label.detail-label{
   margin-bottom: 0;
 }
 
-li.event .event-details a.event-link {
+li.event a.event-link {
   padding: 10px;
   border-radius: 3px;
   background-color: #e7e7e7;
@@ -90,17 +90,18 @@ li.event .event-details a.event-link {
   display: flex;
   align-items: center;
   height: 40px;
-  min-width: 140px;
+  width: 100%;
   text-decoration: none;
   justify-content: center;
+  margin-top: 10px;
 }
 
-li.event .event-details a.event-link:hover {
+li.event a.event-link:hover {
   background-color: #007bff;
   color: #fff;
 }
 
-li.event .event-details a.event-link:active {
+li.event a.event-link:active {
   background-color: #0069db;
   margin-top: 5px;
 }
