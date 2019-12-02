@@ -4,15 +4,18 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/pro-solid-svg-icons";
 import { fal } from "@fortawesome/pro-light-svg-icons";
+import { far } from "@fortawesome/pro-regular-svg-icons";
 import Search from "./components/Search/Search";
 import Forecast from "./components/Forecast/Forecast";
 import CityInfo from "./components/CityInfo/CityInfo";
 import WeatherInfo from "./components/WeatherInfo/WeatherInfo";
 import Events from "./components/Events/Events";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container, Row, Col } from 'react-bootstrap';
 import "./App.css";
 
 function App({ facade }) {
-  library.add(fas, fal);
+  library.add(fas, fal, far);
   const [city, setCity] = useState("");
   const [notFound, setNotFound] = useState(false);
   const [search, setSearch] = useState("");
@@ -47,21 +50,29 @@ function App({ facade }) {
             />
           </Route>
           <Route exact path="/forecast/:cityName/:date">
-            <WeatherInfo
-              weekday={weekday}
-              city={city}
-              setCity={setCity}
-              facade={facade}
-              setNotFound={setNotFound}
-              notFound={notFound}
-            />
-            <Events
-              city={city}
-              setCity={setCity}
-              facade={facade}
-              setNotFound={setNotFound}
-              notFound={notFound}
-            />
+            <Container>
+              <Row>
+                <Col md="6" className="d-flex">
+                  <WeatherInfo
+                    weekday={weekday}
+                    city={city}
+                    setCity={setCity}
+                    facade={facade}
+                    setNotFound={setNotFound}
+                    notFound={notFound}
+                  />
+                </Col>
+                <Col md="6" className="d-flex">
+                  <Events
+                    city={city}
+                    setCity={setCity}
+                    facade={facade}
+                    setNotFound={setNotFound}
+                    notFound={notFound}
+                  />
+                </Col>
+              </Row>
+            </Container>
           </Route>
         </Switch>
       </Router>
