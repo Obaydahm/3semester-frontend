@@ -38,28 +38,36 @@ function Forecast({
           <h1 className="forecast-city-name">{city.cityName}</h1>
           {city !== "" && city !== undefined ? (
             <div>
-              <div className="forecast-today">
-                <div>
-                  <h4 className="forecast-desc">
-                    {city.weatherList[0].weatherDescription}
-                  </h4>
-                  <h1 className="forecast-temp">{city.weatherList[0].temp}°</h1>
+              <div className="forecast-days-wrapper">
+                <div className="sne">
+                  <div className="forecast-today">
+                    <Link to={match.url + "/" + city.weatherList[0].date}>
+                      <div>
+                        <h4 className="forecast-desc">
+                          {city.weatherList[0].weatherDescription}
+                        </h4>
+                        <h1 className="forecast-temp">
+                          {city.weatherList[0].temp}°
+                        </h1>
+                      </div>
+                    </Link>
+                  </div>
+                  <ul className="forecast-ul">
+                    {city.weatherList.map((w, i) =>
+                      i === 0 ? (
+                        ""
+                      ) : (
+                        <Link key={i} to={match.url + "/" + w.date}>
+                          <li className="forecast-li">
+                            <span>{weekday[new Date(w.date).getDay()]}</span>
+                            <span>{w.temp}°</span>
+                          </li>
+                        </Link>
+                      )
+                    )}
+                  </ul>
                 </div>
               </div>
-              <ul className="forecast-ul">
-                {city.weatherList.map((w, i) =>
-                  i === 0 ? (
-                    ""
-                  ) : (
-                    <Link key={i} to={match.url + "/" + w.date}>
-                      <li className="forecast-li">
-                        <span>{weekday[new Date(w.date).getDay()]}</span>
-                        <span>{w.temp}°</span>
-                      </li>
-                    </Link>
-                  )
-                )}
-              </ul>
             </div>
           ) : (
             "Loading..."

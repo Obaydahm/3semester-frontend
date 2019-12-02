@@ -17,17 +17,29 @@
   margin: 30px;
   font-size: 50px;
 }
+.forecast-days-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .forecast-ul {
   list-style: none;
-  padding: 0px 40px;
+  padding: 0;
+}
+.sne {
+  width: 100%;
+  max-width: 600px;
 }
 .forecast-li {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 40px 0px;
-  width: 100%;
+  padding: 20px;
   font-size: 20px;
+}
+.forecast-today:hover,
+.forecast-li:hover {
+  background: rgba(255, 255, 255, 0.01);
 }
 .forecast-search,
 .forecast-info {
@@ -48,7 +60,9 @@
 .forecast-today {
   color: white;
   text-align: center;
+  max-width: 600px;
   margin-top: 50px;
+  padding: 20px;
 }
 .forecast-desc {
   font-weight: 200;
@@ -59,6 +73,7 @@
   font-weight: 100;
   text-align: center;
 }
+
 @media (max-width: 600px) {
   .forecast-city-name {
     font-size: 30px;
