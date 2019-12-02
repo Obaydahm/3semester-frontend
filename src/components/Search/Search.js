@@ -47,10 +47,9 @@ function Search({ city, search, setSearch }) {
     history.push("/forecast/" + search);
     setSearch("");
   }
-
   return (
     <div className="search-wrapper">
-      {city === undefined || city === "" ? (
+      {city === undefined || city === "" || city === null ? (
         ""
       ) : (
         <Link to={"/forecast/" + search}>

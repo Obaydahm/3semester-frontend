@@ -29,13 +29,23 @@ function ApiFacade() {
   };
 
   const fetchEvents = (city, date) => {
-    const eventsURL = "https://runivn.dk/3SEMPROJECT/api/resource/events?"
-      + "startdate=" + date
-      + "&enddate=" + date
-      + "&country=" + city.cityInfo.country
-      + "&city=" + city.cityName;
+    const eventsURL =
+      "https://runivn.dk/3SEMPROJECT/api/resource/events?" +
+      "startdate=" +
+      date +
+      "&enddate=" +
+      date +
+      "&country=" +
+      city.cityInfo.country +
+      "&city=" +
+      city.cityName;
     return fetch(eventsURL, makeOptions("get")).then(handleHttpErrors);
   };
-  return { fetchCityInfo, fetchEvents };
+  const fetchHourlyTemp = city => {
+    return fetch(URL + "hourly/" + city, makeOptions("get")).then(
+      handleHttpErrors
+    );
+  };
+  return { fetchCityInfo, fetchEvents, fetchHourlyTemp };
 }
 export default ApiFacade();
