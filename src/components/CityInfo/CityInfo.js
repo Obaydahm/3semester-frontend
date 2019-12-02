@@ -1,5 +1,4 @@
 import React from "react";
-
 import "./CityInfo.css";
 import { Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

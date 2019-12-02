@@ -1,6 +1,13 @@
 import React from "react";
 import { useRouteMatch } from "react-router-dom";
-function WeatherInfo({ city, setCity, facade, notFound, setNotFound }) {
+function WeatherInfo({
+  weekday,
+  city,
+  setCity,
+  facade,
+  notFound,
+  setNotFound
+}) {
   const match = useRouteMatch();
   let weatherInfo;
   let result = "";
@@ -26,7 +33,9 @@ function WeatherInfo({ city, setCity, facade, notFound, setNotFound }) {
     )
   ) : (
     <div>
-      <h1 className="forecast-city-name">{city.cityName}</h1>
+      <h1 className="forecast-city-name">
+        {weekday[new Date(match.params.date).getDay()]}
+      </h1>
       <ul>
         <li>Average temperature: {weatherInfo.temp}</li>
         <li>Weather description: {weatherInfo.weatherDescription}</li>

@@ -13,11 +13,59 @@
 .forecast-city-name {
   color: white;
   text-align: center;
-  font-weight: 200;
+  font-weight: 300;
   margin: 30px;
   font-size: 50px;
 }
-.link-style {
-  font-size: "20px";
-  color: "#999999";
+.forecast-ul {
+  list-style: none;
+  padding: 0px 40px;
+}
+.forecast-li {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 40px 0px;
+  width: 100%;
+  font-size: 20px;
+}
+.forecast-search,
+.forecast-info {
+  position: absolute;
+  color: white;
+  font-size: 30px;
+  top: 50px;
+}
+.forecast-search {
+  right: 50px;
+}
+.forecast-info {
+  left: 50px;
+}
+.forecast-days {
+  font-weight: 400;
+}
+.forecast-today {
+  color: white;
+  text-align: center;
+  margin-top: 50px;
+}
+.forecast-desc {
+  font-weight: 200;
+}
+.forecast-temp {
+  font-size: 130px;
+  color: white;
+  font-weight: 100;
+  text-align: center;
+}
+@media (max-width: 600px) {
+  .forecast-city-name {
+    font-size: 30px;
+  }
+  .forecast-search,
+  .forecast-info {
+    font-size: 20px;
+    top: 40px;
+  }
 }

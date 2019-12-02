@@ -1,9 +1,20 @@
 import React, { useEffect } from "react";
 import "./Forecast.css";
 import { Link, useRouteMatch } from "react-router-dom";
-function Forecast({ notFound, setNotFound, setCity, city, facade, setSearch }) {
+import { Row, Col } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+function Forecast({
+  notFound,
+  setNotFound,
+  setCity,
+  city,
+  facade,
+  setSearch,
+  weekday
+}) {
   const match = useRouteMatch();
   var bodyStyles = window.getComputedStyle(document.body);
+
   useEffect(() => {
     facade
       .fetchCityInfo(match.params.cityName)
@@ -25,28 +36,49 @@ function Forecast({ notFound, setNotFound, setCity, city, facade, setSearch }) {
       ) : (
         <div>
           <h1 className="forecast-city-name">{city.cityName}</h1>
-          <Link to={match.url + "/info"} className="link-style">
-            City Info
-          </Link>
           {city !== "" && city !== undefined ? (
-            <ul>
-              {city.weatherList.map((w, i) => (
-                <li key={i}>
-                  <Link to={match.url + "/" + w.date}>{w.date}</Link>
-                </li>
-              ))}
-            </ul>
+            <div>
+              <div className="forecast-today">
+                <div>
+                  <h4 className="forecast-desc">
+                    {city.weatherList[0].weatherDescription}
+                  </h4>
+                  <h1 className="forecast-temp">{city.weatherList[0].temp}°</h1>
+                </div>
+              </div>
+              <ul className="forecast-ul">
+                {city.weatherList.map((w, i) =>
+                  i === 0 ? (
+                    ""
+                  ) : (
+                    <Link key={i} to={match.url + "/" + w.date}>
+                      <li className="forecast-li">
+                        <span>{weekday[new Date(w.date).getDay()]}</span>
+                        <span>{w.temp}°</span>
+                      </li>
+                    </Link>
+                  )
+                )}
+              </ul>
+            </div>
           ) : (
             "Loading..."
           )}
         </div>
       )}
-      <br />
-      <Link to="/search" className="link-style">
-        Search
+
+      <Link to={match.url + "/info"} className="link-style">
+        <FontAwesomeIcon
+          icon={["fal", "info-circle"]}
+          className="forecast-info"
+        />
       </Link>
-      <br />
-      <br />
+      <Link to="/search" className="link-style">
+        <FontAwesomeIcon
+          icon={["fal", "search-location"]}
+          className="forecast-search"
+        />
+      </Link>
     </div>
   );
 }
