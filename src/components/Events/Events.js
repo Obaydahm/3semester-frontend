@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { useRouteMatch } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Events.css";
 
 function Events({ city, setCity, facade, notFound, setNotFound }) {
@@ -9,7 +8,8 @@ function Events({ city, setCity, facade, notFound, setNotFound }) {
   const [eventsNotFound, setEventsNotFound] = useState(false);
   useEffect(() => {
     if (city !== "" && city !== undefined) {
-      facade.fetchEvents(city, match.params.date)
+      facade
+        .fetchEvents(city, match.params.date)
         .then(data => setEvents(data))
         .catch(e => setEventsNotFound(true));
     } else {
@@ -28,44 +28,42 @@ function Events({ city, setCity, facade, notFound, setNotFound }) {
 
   return (
     <div className="event-wrapper">
-      {
-        eventsNotFound ? (
-          <div className="event-error">
-            No events was found for that specific date
-            <span role="img" aria-label="crying-smiley" className="no-invert">
-              &#128557;
-            </span>
-          </div>
-        )
-          :
-          (
-            <ul className="events-ul">
-              {
-                events.map((event, i) => (
-                  <li key={i} className="event">
-                    <div className="event-name">{event.eventName}</div>
-                    <div className="event-details">
-                      <div className="detail">
-                        <label className="detail-label">Date</label>
-                        <span>{event.eventDate}</span>
-                      </div>
+      {eventsNotFound ? (
+        <div className="event-error">
+          No events was found for that specific date
+          <span role="img" aria-label="crying-smiley" className="no-invert">
+            &#128557;
+          </span>
+        </div>
+      ) : (
+        <ul className="events-ul">
+          {events.map((event, i) => (
+            <li key={i} className="event">
+              <div className="event-name">{event.eventName}</div>
+              <div className="event-details">
+                <div className="detail">
+                  <label className="detail-label">Date</label>
+                  <span>{event.eventDate}</span>
+                </div>
 
-                      <div className="detail">
-                        <label className="detail-label text-right">Address</label>
-                        <span>{event.eventAddress}</span>
-                      </div>
-                    </div>
+                <div className="detail">
+                  <label className="detail-label text-right">Address</label>
+                  <span>{event.eventAddress}</span>
+                </div>
+              </div>
 
-                    <a className="event-link" href={event.eventURL} target="_blank" rel="noopener noreferrer">
-                      Get tickets
-                    </a>
-
-                  </li>
-                ))
-              }
-            </ul>
-          )
-      }
+              <a
+                className="event-link"
+                href={event.eventURL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Get tickets
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

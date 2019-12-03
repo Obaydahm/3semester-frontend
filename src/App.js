@@ -1,5 +1,16 @@
-import React, { useState } from "react";
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import React, {
+  useRef,
+  useComponentDidMount,
+  useState,
+  useLayoutEffect,
+  useEffect
+} from "react";
+import {
+  Route,
+  Redirect,
+  BrowserRouter as Router,
+  Switch
+} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/pro-solid-svg-icons";
@@ -10,8 +21,8 @@ import Forecast from "./components/Forecast/Forecast";
 import CityInfo from "./components/CityInfo/CityInfo";
 import WeatherInfo from "./components/WeatherInfo/WeatherInfo";
 import Events from "./components/Events/Events";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Row, Col } from 'react-bootstrap';
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Container, Row, Col } from "react-bootstrap";
 import "./App.css";
 
 function App({ facade }) {
@@ -21,6 +32,23 @@ function App({ facade }) {
   const [search, setSearch] = useState("");
   const [hours, setHours] = useState("");
   const weekday = new Array(7);
+  const [userPosition, setUserPosition] = useState("");
+  const [isChecked, setIsChecked] = useState(false);
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        if (position) {
+          const lat = position.coords.latitude;
+          const lng = position.coords.longitude;
+          setUserPosition({ lat, lng });
+        }
+        setIsChecked(true);
+      },
+      error => {
+        setIsChecked(true);
+      }
+    );
+  }, []);
   weekday[0] = "Sunday";
   weekday[1] = "Monday";
   weekday[2] = "Tuesday";
@@ -32,6 +60,17 @@ function App({ facade }) {
     <div className="App">
       <Router>
         <Switch>
+          <Route exact path="/">
+            {isChecked === false ? (
+              ""
+            ) : userPosition === "" ? (
+              <Redirect to="/search" />
+            ) : (
+              <Redirect
+                to={"/forecast/" + userPosition.lat + "," + userPosition.lng}
+              />
+            )}
+          </Route>
           <Route exact path="/search">
             <Search city={city} search={search} setSearch={setSearch} />
           </Route>
@@ -82,4 +121,5 @@ function App({ facade }) {
     </div>
   );
 }
+
 export default App;

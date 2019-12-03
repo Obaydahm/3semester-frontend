@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Link, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import exit from "./icons/exit.svg";
 import "./Search.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
