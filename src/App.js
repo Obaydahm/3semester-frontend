@@ -1,10 +1,4 @@
-import React, {
-  useRef,
-  useComponentDidMount,
-  useState,
-  useLayoutEffect,
-  useEffect
-} from "react";
+import React, { useState, useEffect } from "react";
 import {
   Route,
   Redirect,
@@ -23,6 +17,7 @@ import WeatherInfo from "./components/WeatherInfo/WeatherInfo";
 import Events from "./components/Events/Events";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col } from "react-bootstrap";
+import Geolocation from "@react-native-community/geolocation";
 import "./App.css";
 
 function App({ facade }) {
@@ -35,7 +30,7 @@ function App({ facade }) {
   const [userPosition, setUserPosition] = useState("");
   const [isChecked, setIsChecked] = useState(false);
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(
+    Geolocation.getCurrentPosition(
       position => {
         if (position) {
           const lat = position.coords.latitude;
