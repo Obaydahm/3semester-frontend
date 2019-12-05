@@ -61,10 +61,10 @@ function App({ facade }) {
             ) : userPosition === "" ? (
               <Redirect to="/search" />
             ) : (
-              <Redirect
-                to={"/forecast/" + userPosition.lat + "," + userPosition.lng}
-              />
-            )}
+                  <Redirect
+                    to={"/forecast/" + userPosition.lat + "," + userPosition.lng}
+                  />
+                )}
           </Route>
           <Route exact path="/search">
             <Search city={city} search={search} setSearch={setSearch} />

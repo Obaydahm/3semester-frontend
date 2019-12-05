@@ -42,61 +42,61 @@ function Forecast({
       {notFound === true ? (
         <h1>404</h1>
       ) : (
-        <div>
-          <h1 className="forecast-city-name">{city.cityName}</h1>
-          {city !== "" && city !== undefined ? (
-            <div>
-              <div className="forecast-days-wrapper">
-                <div className="sne">
-                  <div className="forecast-today">
-                    <Link to={match.url + "/" + city.weatherList[0].date}>
-                      <div>
-                        <h4 className="forecast-desc">
-                          {city.weatherList[0].weatherDescription}
-                        </h4>
-                        <h1 className="forecast-temp">
-                          {city.weatherList[0].temp}°
+          <div>
+            <h1 className="forecast-city-name">{city.cityName}</h1>
+            {city !== "" && city !== undefined ? (
+              <div>
+                <div className="forecast-days-wrapper">
+                  <div className="sne">
+                    <div className="forecast-today">
+                      <Link to={match.url + "/" + city.weatherList[0].date}>
+                        <div>
+                          <h4 className="forecast-desc">
+                            {city.weatherList[0].weatherDescription}
+                          </h4>
+                          <h1 className="forecast-temp">
+                            {city.weatherList[0].temp}°
                         </h1>
-                        <p className="forecast-day">Today</p>
-                        <ul className="forecast-hour-ul">
-                          {Object.keys(hours).map((hour, index) => (
-                            <li key={index} className="forecast-hour-li">
-                              <div className="forecast-li-wrap">
-                                {index === 0 ? (
-                                  <p>Now</p>
-                                ) : (
-                                  <p>{hours[index].split(",")[0]}</p>
-                                )}
-                                <p>{Math.round(hours[index].split(",")[1])}°</p>
-                              </div>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </Link>
+                          <p className="forecast-day">Today</p>
+                          <ul className="forecast-hour-ul">
+                            {Object.keys(hours).map((hour, index) => (
+                              <li key={index} className="forecast-hour-li">
+                                <div className="forecast-li-wrap">
+                                  {index === 0 ? (
+                                    <p>Now</p>
+                                  ) : (
+                                      <p>{hours[index].split(",")[0]}</p>
+                                    )}
+                                  <p>{Math.round(hours[index].split(",")[1])}°</p>
+                                </div>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </Link>
+                    </div>
+                    <ul className="forecast-ul">
+                      {city.weatherList.map((w, i) =>
+                        i === 0 ? (
+                          ""
+                        ) : (
+                            <Link key={i} to={match.url + "/" + w.date}>
+                              <li className="forecast-li">
+                                <span>{weekday[new Date(w.date).getDay()]}</span>
+                                <span>{w.temp}°</span>
+                              </li>
+                            </Link>
+                          )
+                      )}
+                    </ul>
                   </div>
-                  <ul className="forecast-ul">
-                    {city.weatherList.map((w, i) =>
-                      i === 0 ? (
-                        ""
-                      ) : (
-                        <Link key={i} to={match.url + "/" + w.date}>
-                          <li className="forecast-li">
-                            <span>{weekday[new Date(w.date).getDay()]}</span>
-                            <span>{w.temp}°</span>
-                          </li>
-                        </Link>
-                      )
-                    )}
-                  </ul>
                 </div>
               </div>
-            </div>
-          ) : (
-            "Loading..."
-          )}
-        </div>
-      )}
+            ) : (
+                "Loading..."
+              )}
+          </div>
+        )}
 
       <Link to={match.url + "/info"} className="link-style">
         <FontAwesomeIcon
@@ -115,8 +115,7 @@ function Forecast({
 }
 function getBackground(city) {
   let code;
-  const today = new Date();
-  const currentHour = today.getHours();
+  const currentHour = Number(city.localHour);
   const sunrise = Number(city.weatherList[0].sunrise.substring(0, 2));
   const sunset = Number(city.weatherList[0].sunset.substring(0, 2));
   if (city !== null && city !== undefined && city !== "") {

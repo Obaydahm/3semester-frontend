@@ -1,4 +1,4 @@
-const URL = "https://sinanjasar.dk/3sem-project/api/weather/";
+const URL = "http://localhost:8080/3sem-project/api/weather/";
 
 function handleHttpErrors(res) {
   if (!res.ok) {
@@ -36,7 +36,7 @@ function ApiFacade() {
       "&enddate=" +
       date +
       "&country=" +
-      city.cityInfo.country +
+      city.country +
       "&city=" +
       city.cityName;
     return fetch(eventsURL, makeOptions("get")).then(handleHttpErrors);

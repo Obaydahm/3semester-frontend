@@ -9,7 +9,7 @@ function CityInfo({ city }) {
     <div className="cityinfo-wrapper">
       <div className="cityinfo-topbar">
         <h1>{city.cityName}</h1>
-        <h3>{city.cityInfo.country}</h3>
+        <h3>{city.country}</h3>
       </div>
 
       <div className="cityinfo-content">
@@ -23,22 +23,22 @@ function CityInfo({ city }) {
 
               <div className="item">
                 <span className="title">Continent</span>
-                <span>{city.cityInfo.continent}</span>
+                <span>{city.continent}</span>
               </div>
 
               <div className="item">
                 <span className="title">Country</span>
-                <span>{city.cityInfo.country}</span>
+                <span>{city.country}</span>
               </div>
 
               <div className="item">
                 <span className="title">State</span>
-                <span>{city.cityInfo.state}</span>
+                <span>{city.state}</span>
               </div>
 
               <div className="item">
                 <span className="title">Calling Code</span>
-                <span>+{city.cityInfo.callingcode}</span>
+                <span>+{city.callingCode}</span>
               </div>
             </div>
           </Col>
@@ -52,22 +52,22 @@ function CityInfo({ city }) {
 
               <div className="item">
                 <span className="title">Name</span>
-                <span>{city.cityInfo.currency_name}</span>
+                <span>{city.currencyName}</span>
               </div>
 
               <div className="item">
                 <span className="title">Abbreviation</span>
-                <span>{city.cityInfo.currency_abbreviation}</span>
+                <span>{city.currencyAbb}</span>
               </div>
 
               <div className="item">
                 <span className="title">Symbol</span>
-                <span>{city.cityInfo.currency_symbol}</span>
+                <span>{city.currencySymbol}</span>
               </div>
 
               <div className="item">
                 <span className="title">Subunit</span>
-                <span>{city.cityInfo.currency_subunit}</span>
+                <span>{city.currencySubunit}</span>
               </div>
             </div>
           </Col>
@@ -81,22 +81,22 @@ function CityInfo({ city }) {
 
               <div className="item">
                 <span className="title">Region</span>
-                <span>{city.cityInfo.timezone_region}</span>
+                <span>{city.timezoneRegion}</span>
               </div>
 
               <div className="item">
                 <span className="title">Timezone</span>
-                <span>{city.cityInfo.timezone_short}</span>
+                <span>{city.timezoneShort}</span>
               </div>
 
               <div className="item">
                 <span className="title">Offset</span>
-                <span>{city.cityInfo.timezone_offset}</span>
+                <span>{city.timezoneOffset}</span>
               </div>
 
               <div className="item">
                 <span className="title">Offset in seconds</span>
-                <span>{city.cityInfo.timezone_offset_seconds}</span>
+                <span>{city.timezoneOffsetSeconds}</span>
               </div>
             </div>
           </Col>
@@ -110,12 +110,12 @@ function CityInfo({ city }) {
 
               <div className="item">
                 <span className="title">Drive on</span>
-                <span>{city.cityInfo.roadinfo_driveon}</span>
+                <span>{city.roadInfoDriveSide}</span>
               </div>
 
               <div className="item">
                 <span className="title">Speed in</span>
-                <span>{city.cityInfo.roadinfo_unit}</span>
+                <span>{city.roadInfoSpeedUnit}</span>
               </div>
             </div>
           </Col>
@@ -129,7 +129,7 @@ function CityInfo({ city }) {
 
               <div className="item">
                 <span className="title">Direction degree</span>
-                <span>{city.cityInfo.qibla}&#176;</span>
+                <span>{city.qibla}&#176;</span>
               </div>
             </div>
           </Col>
