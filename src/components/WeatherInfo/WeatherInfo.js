@@ -14,7 +14,7 @@ function WeatherInfo({
   let weatherInfo;
   let result = "";
   if (city !== "") {
-    result = city.weatherList.find(w => w.date === match.params.date);
+    result = city.forecast.find(w => w.date === match.params.date);
     weatherInfo = result;
   } else {
     facade
@@ -31,53 +31,64 @@ function WeatherInfo({
     ) : result === undefined ? (
       <p>invalid date !</p>
     ) : (
-          <p>Loading info !</p>
-        )
+      <p>Loading info !</p>
+    )
   ) : (
-      <div className="wi-wrapper">
-        <h1 className="forecast-city-name">
-          {weekday[new Date(match.params.date).getDay()]}
-        </h1>
+    <div className="wi-wrapper">
+      <h1 className="forecast-city-name">
+        {weekday[new Date(match.params.date).getDay()]}
+      </h1>
 
-        <div className="wii">
-          <div className="wi-details-wrapper">
-            <div className="wi-detail-box">
-              <span className="wi-detail-icon"><FontAwesomeIcon icon={["fal", "sunrise"]} size="1x" /></span>
-              <span className="wi-detail-text">Sunrise</span>
-              <span>{weatherInfo.sunrise}</span>
-            </div>
-            <div className="wi-detail-box">
-              <span className="wi-detail-icon"><FontAwesomeIcon icon={["fal", "sunset"]} size="1x" /></span>
-              <span className="wi-detail-text">Sunset</span>
-              <span>{weatherInfo.sunset}</span>
-            </div>
-            <div className="wi-detail-box">
-              <span className="wi-detail-icon"><FontAwesomeIcon icon={["fal", "clouds"]} size="1x" /></span>
-              <span className="wi-detail-text">Cloudiness</span>
-              <span>{weatherInfo.clouds}%</span>
-            </div>
+      <div className="wii">
+        <div className="wi-details-wrapper">
+          <div className="wi-detail-box">
+            <span className="wi-detail-icon">
+              <FontAwesomeIcon icon={["fal", "sunrise"]} size="1x" />
+            </span>
+            <span className="wi-detail-text">Sunrise</span>
+            <span>{weatherInfo.sunrise}</span>
           </div>
-
-          <div className="wi-details-wrapper">
-            <div className="wi-detail-box">
-              <span className="wi-detail-icon"><FontAwesomeIcon icon={["fal", "raindrops"]} size="1x" /></span>
-              <span className="wi-detail-text">Rain</span>
-              <span>{weatherInfo.pop}%</span>
-            </div>
-            <div className="wi-detail-box">
-              <span className="wi-detail-icon"><FontAwesomeIcon icon={["fal", "humidity"]} size="1x" /></span>
-              <span className="wi-detail-text">Humidity</span>
-              <span>{weatherInfo.humidity}</span>
-            </div>
-            <div className="wi-detail-box">
-              <span className="wi-detail-icon"><FontAwesomeIcon icon={["fal", "wind"]} size="1x" /></span>
-              <span className="wi-detail-text">Wind</span>
-              <span>{Math.round(weatherInfo.windSpeed * 10) / 10} m/s</span>
-            </div>
+          <div className="wi-detail-box">
+            <span className="wi-detail-icon">
+              <FontAwesomeIcon icon={["fal", "sunset"]} size="1x" />
+            </span>
+            <span className="wi-detail-text">Sunset</span>
+            <span>{weatherInfo.sunset}</span>
+          </div>
+          <div className="wi-detail-box">
+            <span className="wi-detail-icon">
+              <FontAwesomeIcon icon={["fal", "clouds"]} size="1x" />
+            </span>
+            <span className="wi-detail-text">Cloudiness</span>
+            <span>{weatherInfo.clouds}%</span>
           </div>
         </div>
 
+        <div className="wi-details-wrapper">
+          <div className="wi-detail-box">
+            <span className="wi-detail-icon">
+              <FontAwesomeIcon icon={["fal", "raindrops"]} size="1x" />
+            </span>
+            <span className="wi-detail-text">Rain</span>
+            <span>{weatherInfo.pop}%</span>
+          </div>
+          <div className="wi-detail-box">
+            <span className="wi-detail-icon">
+              <FontAwesomeIcon icon={["fal", "humidity"]} size="1x" />
+            </span>
+            <span className="wi-detail-text">Humidity</span>
+            <span>{weatherInfo.humidity}</span>
+          </div>
+          <div className="wi-detail-box">
+            <span className="wi-detail-icon">
+              <FontAwesomeIcon icon={["fal", "wind"]} size="1x" />
+            </span>
+            <span className="wi-detail-text">Wind</span>
+            <span>{Math.round(weatherInfo.windSpeed * 10) / 10} m/s</span>
+          </div>
+        </div>
       </div>
-    );
+    </div>
+  );
 }
 export default WeatherInfo;

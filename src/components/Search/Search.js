@@ -3,25 +3,13 @@ import { Link, useHistory } from "react-router-dom";
 import exit from "./icons/exit.svg";
 import "./Search.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Logo from "./images/Weavent-01.png";
 function Search({ city, search, setSearch }) {
   document.body.style = "background: #34303b;";
   const [searches, setSearches] = useState([]);
   function handleHref(event) {
     setSearch(event.target.innerHTML.toLowerCase());
   }
-  const iconCloudStyle = {
-    fontSize: "60px",
-    color: "#f2f8ff"
-  };
-  const iconSunStyle = {
-    fontSize: "30px",
-    color: "yellow",
-    marginTop: "27px",
-    marginLeft: "-5px"
-  };
-  const spanStyle = {
-    padding: "45px 0px"
-  };
 
   const history = useHistory();
 
@@ -57,12 +45,10 @@ function Search({ city, search, setSearch }) {
         </Link>
       )}
 
-      <span className="fa-layers fa-fw" style={spanStyle}>
-        <FontAwesomeIcon icon="circle" style={iconSunStyle} />
-        <FontAwesomeIcon icon="cloud" style={iconCloudStyle} />
+      <span>
+        <img className="logo" src={Logo} alt="logo" />
       </span>
 
-      <h1>Search for a city</h1>
       <form className="search-form" onSubmit={handleSubmit}>
         <div className="search-bar">
           <input
