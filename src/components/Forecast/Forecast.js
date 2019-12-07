@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import "./Forecast.css";
 import { Link, useRouteMatch } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Loading from "../Loading";
 function Forecast({
   notFound,
   setNotFound,
@@ -43,71 +44,79 @@ function Forecast({
       {notFound === true ? (
         <h1>404</h1>
       ) : (
-        <div>
-          <h1 className="forecast-city-name">{city.cityName}</h1>
-          {city !== "" && city !== undefined ? (
-            <div>
-              <div className="forecast-days-wrapper">
-                <div className="sne">
-                  <div className="forecast-today">
-                    <Link to={match.url + "/" + city.forecast[0].date}>
-                      <div>
-                        <h4 className="forecast-desc">
-                          {city.forecast[0].weatherDescription}
-                        </h4>
-                        <h1 className="forecast-temp">
-                          {city.forecast[0].temp}°
-                        </h1>
-                        <p className="forecast-day">Today</p>
-                        <ul className="forecast-hour-ul">
-                          {Object.keys(hours).map((hour, index) => (
-                            <li key={index} className="forecast-hour-li">
-                              <div className="forecast-li-wrap">
-                                <p>{hours[index].split(",")[0]}</p>
-                                <p>{Math.round(hours[index].split(",")[1])}°</p>
-                              </div>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+          <div>
+            <h1 className="forecast-city-name">{city.cityName}</h1>
+            {city !== "" && city !== undefined ? (
+              <div>
+
+                {
+                  <React.Fragment>
+                    <Link to={match.url + "/info"} className="link-style">
+                      <FontAwesomeIcon
+                        icon={["fal", "info-circle"]}
+                        className="forecast-info"
+                      />
                     </Link>
+                    <Link to="/search" className="link-style">
+                      <FontAwesomeIcon
+                        icon={["fal", "search-location"]}
+                        className="forecast-search"
+                      />
+                    </Link>
+                  </React.Fragment>
+                }
+
+                <div className="forecast-days-wrapper">
+                  <div className="sne">
+                    <div className="forecast-today">
+                      <Link to={match.url + "/" + city.forecast[0].date}>
+                        <div>
+                          <h4 className="forecast-desc">
+                            {city.forecast[0].weatherDescription}
+                          </h4>
+                          <h1 className="forecast-temp">
+                            {city.forecast[0].temp}°
+                        </h1>
+                          <p className="forecast-day">Today</p>
+                          <ul className="forecast-hour-ul">
+                            {Object.keys(hours).map((hour, index) => (
+                              <li key={index} className="forecast-hour-li">
+                                <div className="forecast-li-wrap">
+                                  <p>{hours[index].split(",")[0]}</p>
+                                  <p>{Math.round(hours[index].split(",")[1])}°</p>
+                                </div>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </Link>
+                    </div>
+                    <ul className="forecast-ul">
+                      {city.forecast.map((w, i) =>
+                        i === 0 ? (
+                          ""
+                        ) : (
+                            <Link key={i} to={match.url + "/" + w.date}>
+                              <li className="forecast-li">
+                                <span>{weekday[new Date(w.date).getDay()]}</span>
+                                <span>{w.temp}°</span>
+                              </li>
+                            </Link>
+                          )
+                      )}
+                    </ul>
                   </div>
-                  <ul className="forecast-ul">
-                    {city.forecast.map((w, i) =>
-                      i === 0 ? (
-                        ""
-                      ) : (
-                        <Link key={i} to={match.url + "/" + w.date}>
-                          <li className="forecast-li">
-                            <span>{weekday[new Date(w.date).getDay()]}</span>
-                            <span>{w.temp}°</span>
-                          </li>
-                        </Link>
-                      )
-                    )}
-                  </ul>
                 </div>
               </div>
-            </div>
-          ) : (
-            "Loading..."
-          )}
-        </div>
-      )}
+            ) : (
+                <Loading />
+              )}
+          </div>
+        )
+      }
 
-      <Link to={match.url + "/info"} className="link-style">
-        <FontAwesomeIcon
-          icon={["fal", "info-circle"]}
-          className="forecast-info"
-        />
-      </Link>
-      <Link to="/search" className="link-style">
-        <FontAwesomeIcon
-          icon={["fal", "search-location"]}
-          className="forecast-search"
-        />
-      </Link>
-    </div>
+
+    </div >
   );
 }
 function getBackground(city) {

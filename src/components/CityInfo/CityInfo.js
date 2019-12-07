@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useRouteMatch } from "react-router-dom";
 import "./CityInfo.css";
 import { Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-function CityInfo({ city }) {
-  console.log("sne", city);
+function CityInfo({ city, setCity, facade }) {
+  const match = useRouteMatch();
+  useEffect(() => {
+    if (city === null || city === "") {
+      facade
+        .fetchCityInfo(match.params.cityName)
+        .then(data => setCity(data));
+    }
+
+  }, []);
+
   document.body.style = "background: #fff";
   return (
     <div className="cityinfo-wrapper">

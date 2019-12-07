@@ -19,6 +19,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col } from "react-bootstrap";
 import Geolocation from "@react-native-community/geolocation";
 import "./App.css";
+import Loading from "./components/Loading";
+
 
 function App({ facade }) {
   library.add(fas, fal, far);
@@ -56,6 +58,9 @@ function App({ facade }) {
     <div className="App">
       <Router>
         <Switch>
+          <Route exact path="/load">
+            <Loading />
+          </Route>
           <Route exact path="/">
             {isChecked === false ? (
               ""
@@ -71,7 +76,7 @@ function App({ facade }) {
             <Search city={city} search={search} setSearch={setSearch} />
           </Route>
           <Route exact path="/forecast/:cityName/info">
-            <CityInfo city={city} />
+            <CityInfo facade={facade} setCity={setCity} city={city} />
           </Route>
           <Route exact path="/forecast/:cityName">
             <Forecast

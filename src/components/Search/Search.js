@@ -40,10 +40,10 @@ function Search({ city, search, setSearch }) {
       {city === undefined || city === "" || city === null ? (
         ""
       ) : (
-        <Link to={"/forecast/" + search}>
-          <img alt="exit-icon" src={exit} className="search-exit" />
-        </Link>
-      )}
+          <Link to={"/forecast/" + search}>
+            <img alt="exit-icon" src={exit} className="search-exit" />
+          </Link>
+        )}
 
       <span>
         <img className="logo" src={Logo} alt="logo" />
@@ -84,13 +84,13 @@ function Search({ city, search, setSearch }) {
               </li>
             ))
         ) : (
-          <p>
-            Nothing to see here{" "}
-            <span role="img" aria-label="wink-smiley">
-              &#128521;
+            <p>
+              Nothing to see here{" "}
+              <span role="img" aria-label="wink-smiley">
+                &#128521;
             </span>
-          </p>
-        )}
+            </p>
+          )}
       </ul>
     </div>
   );

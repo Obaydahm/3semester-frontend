@@ -17,9 +17,9 @@ function Events({ city, setCity, facade, notFound, setNotFound }) {
         .fetchCityInfo(match.params.cityName)
         .then(data => {
           setCity(data);
-          /*facade.fetchEvents(city, match.params.date)
+          facade.fetchEvents(data, match.params.date)
             .then(data => setEvents(data))
-            .catch(e => setEventsNotFound(true));*/
+            .catch(e => setEventsNotFound(true));
           console.log(city);
         })
         .catch(e => setNotFound(true));
@@ -36,34 +36,34 @@ function Events({ city, setCity, facade, notFound, setNotFound }) {
           </span>
         </div>
       ) : (
-        <ul className="events-ul">
-          {events.map((event, i) => (
-            <li key={i} className="event">
-              <div className="event-name">{event.eventName}</div>
-              <div className="event-details">
-                <div className="detail">
-                  <label className="detail-label">Date</label>
-                  <span>{event.eventDate}</span>
+          <ul className="events-ul">
+            {events.map((event, i) => (
+              <li key={i} className="event">
+                <div className="event-name">{event.eventName}</div>
+                <div className="event-details">
+                  <div className="detail">
+                    <label className="detail-label">Date</label>
+                    <span>{event.eventDate}</span>
+                  </div>
+
+                  <div className="detail">
+                    <label className="detail-label text-right">Address</label>
+                    <span>{event.eventAddress}</span>
+                  </div>
                 </div>
 
-                <div className="detail">
-                  <label className="detail-label text-right">Address</label>
-                  <span>{event.eventAddress}</span>
-                </div>
-              </div>
-
-              <a
-                className="event-link"
-                href={event.eventURL}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Get tickets
+                <a
+                  className="event-link"
+                  href={event.eventURL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Get tickets
               </a>
-            </li>
-          ))}
-        </ul>
-      )}
+              </li>
+            ))}
+          </ul>
+        )}
     </div>
   );
 }
